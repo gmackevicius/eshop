@@ -47,12 +47,6 @@ public class ProductService {
         this.productRepository.save(productEntity);
     }
 
-    public void createCategory(CategoryModel categoryModel) {
-        CategoryEntity entity = new CategoryEntity();
-        entity.setName(categoryModel.getName());
-
-        this.categoryRepository.save(entity);
-    }
 
     public List<ProductModel> getProducts() {
 
@@ -75,12 +69,6 @@ public class ProductService {
         return productList;
     }
 
-    public List<CategoryModel> getCategories() {
-
-        List<CategoryEntity> categories = (List<CategoryEntity>) categoryRepository.findAll();
-
-        return categories.stream().map(CategoryModel::new).collect(Collectors.toList());
-    }
 
     public void deleteProduct(List<Long> id) {
         for(Long i : id)

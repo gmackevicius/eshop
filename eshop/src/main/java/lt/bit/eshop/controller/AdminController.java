@@ -3,6 +3,7 @@ package lt.bit.eshop.controller;
 
 import lt.bit.eshop.form.CategoryModel;
 import lt.bit.eshop.form.ProductModel;
+import lt.bit.eshop.service.CategoryService;
 import lt.bit.eshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,13 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping("/create/products")
     public String productForm(Model model) {
         model.addAttribute("productModel", new ProductModel());
-        model.addAttribute("categoryList", productService.getCategories());
+        model.addAttribute("categoryList", categoryService.getCategories());
         return "product-form";
     }
 
@@ -52,7 +56,7 @@ public class AdminController {
 
 
         if(!bindingResult.hasErrors()) {
-            productService.createCategory(categoryModel);
+            categoryService.createCategory(categoryModel);
             model.addAttribute("categoryModel", new CategoryModel());
             return "redirect:category";
         }
