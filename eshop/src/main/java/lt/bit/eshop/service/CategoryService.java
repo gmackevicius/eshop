@@ -20,6 +20,16 @@ public class CategoryService {
         CategoryEntity entity = new CategoryEntity();
         entity.setName(categoryModel.getName());
 
+        String slug = categoryModel
+                .getName()
+                .trim()
+                .toLowerCase()
+                .replace(" ", "-");
+
+        entity.setSlug(slug);
+
+
+
         this.categoryRepository.save(entity);
     }
 
@@ -28,5 +38,15 @@ public class CategoryService {
         List<CategoryEntity> categories = (List<CategoryEntity>) categoryRepository.findAll();
 
         return categories.stream().map(CategoryModel::new).collect(Collectors.toList());
+    }
+
+    public CategoryEntity findCategory(String categorySlug) {
+
+        return categoryRepository.findBySlug(categorySlug);
+
+    }
+
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
     }
 }

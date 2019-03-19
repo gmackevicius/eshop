@@ -26,6 +26,9 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private CategoryService categoryService;
+
     public void createProduct(ProductModel productModel){
 
         Product productEntity = new Product();
@@ -36,11 +39,8 @@ public class ProductService {
 
         Optional<CategoryEntity> categoryEnt = categoryRepository.findById(productModel.getCategoryId());
 
-        CategoryEntity categoryEntity =  categoryEnt.get();
+        CategoryEntity categoryEntity = categoryEnt.get();
 
-//        CategoryEntity categoryEntity = new CategoryEntity();
-//        categoryEntity.setId(model.getId());
-//        categoryEntity.setName(model.getName());
 
         productEntity.setCategory(categoryEntity);
 
@@ -53,6 +53,7 @@ public class ProductService {
         List<ProductModel> productList;
 
         List<Product> products = (List<Product>) productRepository.findAll();
+
 //           productList = products.stream().map(p -> {
 //                ProductModel product = new ProductModel();
 //
@@ -69,6 +70,14 @@ public class ProductService {
         return productList;
     }
 
+    public List<ProductModel> getProductsByCategory(CategoryEntity category) {
+
+        List<ProductModel> productList;
+
+        List<Product> products = (List<Product>) productRepository.findByCategory(category);
+
+        return  productList = products.stream().map(ProductModel::new).collect(Collectors.toList());
+    }
 
     public void deleteProduct(List<Long> id) {
         for(Long i : id)

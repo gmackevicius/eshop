@@ -48,6 +48,7 @@ public class AdminController {
     @RequestMapping("/create/category")
     public String categoryForm(Model model) {
         model.addAttribute("categoryModel", new CategoryModel());
+        model.addAttribute("categoryList", categoryService.getCategories());
         return "category-form";
     }
 
@@ -58,6 +59,7 @@ public class AdminController {
         if(!bindingResult.hasErrors()) {
             categoryService.createCategory(categoryModel);
             model.addAttribute("categoryModel", new CategoryModel());
+            model.addAttribute("categoryList", categoryService.getCategories());
             return "redirect:category";
         }
         System.out.println(bindingResult.hasErrors());
@@ -81,6 +83,15 @@ public class AdminController {
 
 
         return productList(model);
+    }
+
+    @RequestMapping( value = "/create/category", method = RequestMethod.DELETE)
+    public String deleteCategory(@RequestParam Long id, Model model) {
+
+        categoryService.deleteCategory(id);
+
+
+        return "redirect:category";
     }
 
 

@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: PC
@@ -16,6 +17,7 @@
 <h1>Category form</h1>
 <div class="container">
     <div class="row">
+        <div class="col-4">
         <form:form method="POST"  modelAttribute="categoryModel">
             <div class="form-group">
                 <label for="name">Category name</label>
@@ -25,6 +27,20 @@
 
             <form:button class="btn btn-primary">Create</form:button>
         </form:form>
+        </div>
+        <div class="col-8">
+            <ul class="list-group">
+                <form:form method="DELETE" modelAttribute="categoryModel">
+                <c:forEach items="${categoryList}" var="category">
+
+                    <li class="list-group-item" style="display: flex; justify-content: space-between;">
+                                ${category.getName()} <form:button name="id" value="${category.getId()}" class="btn btn-primary" >Delete</form:button>
+                    </li>
+
+                </c:forEach>
+                </form:form>
+            </ul>
+        </div>
     </div>
 </div>
 </body>

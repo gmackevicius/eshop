@@ -11,10 +11,13 @@ public class CategoryModel {
     @NotBlank(message="Name is required!")
     private String name;
 
+    private String slug;
+
 
     public CategoryModel(CategoryEntity entity) {
         this.setName(entity.getName());
         this.setId(entity.getId());
+        this.setSlug((entity.getSlug()));
     }
 
     public CategoryModel() {
@@ -34,5 +37,13 @@ public class CategoryModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 }

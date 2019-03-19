@@ -14,6 +14,9 @@ public class CategoryEntity {
     private Long id;
     private String name;
 
+    @Column(unique = true)
+    private String slug;
+
 
     public Long getId() {
         return id;
@@ -29,5 +32,13 @@ public class CategoryEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 }
