@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label for="categoryId">Product category</label>
                 <form:select path="categoryId">
-                    <form:option value="-" label="--Please Select"/>
+                    <form:option value="0" label="--Please Select"/>
                     <form:options items="${categoryList}" itemValue="id" itemLabel="name"/>
                 </form:select>
                 <form:errors path="categoryId" cssStyle="color: red" />

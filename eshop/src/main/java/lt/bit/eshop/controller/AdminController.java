@@ -39,10 +39,32 @@ public class AdminController {
         if(!bindingResult.hasErrors()) {
             productService.createProduct(productModel);
             model.addAttribute("productModel", new ProductModel());
-            return "redirect:products";
+
+            model.addAttribute("productList", productService.getProducts());
+            return "product-list";
         }
         System.out.println(bindingResult.hasErrors());
         return "product-form";
+    }
+
+    @RequestMapping(value = "create/products/{id}")
+    public String editProductForm(@PathVariable Long id, Model model) {
+
+        model.addAttribute("categoryList", categoryService.getCategories());
+        ProductModel pm = productService.getById(id);
+        model.addAttribute("productModel", pm );
+
+        return "product-form";
+    }
+
+    @RequestMapping(value = "create/products/{id}", method = RequestMethod.POST )
+    public String editProduct(@PathVariable Long id, Model model, ProductModel productModel) {
+
+        productService.editProduct(productModel, id);
+
+        model.addAttribute("productList", productService.getProducts());
+
+        return "product-list";
     }
 
     @RequestMapping("/create/category")

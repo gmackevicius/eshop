@@ -22,11 +22,18 @@
                         All categories
                     </a>
                 </li>
-            <c:forEach items="${categoryList}" var="category">
+                <c:forEach items="${categoryList}" var="category">
                 <li class="list-group-item">
-                    <a href="/${category.slug}">
-                        ${category.name}
-                    </a>
+                    <c:choose>
+                        <c:when test="${!category.slug.equals(slug)}">
+                            <a href="/${category.slug}">
+                                    ${category.name}
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <span> ${category.name}</span>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
             </c:forEach>
             </ul>

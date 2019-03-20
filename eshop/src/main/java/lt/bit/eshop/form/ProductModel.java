@@ -31,6 +31,7 @@ public class ProductModel {
         this.setName(product.getName());
         this.setDescription(product.getDescription());
         this.setPrice(product.getPrice());
+        this.setCategoryId(product.getCategory().getId());
         this.setCategoryName(product.getCategory().getName());
 
     }
@@ -77,6 +78,7 @@ public class ProductModel {
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
+
 
     public String getCategoryName() {
         return categoryName;

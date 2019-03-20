@@ -28,6 +28,7 @@
                             <th scope="col">Price</th>
                             <th scope="col">Category</th>
                             <th scope="col">Select</th>
+                            <th scope="col">Edit</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,6 +41,7 @@
                             <td><div class="form-check">
                                 <form:checkbox path="id" cssClass="form-check-input" value="${product.getId()}"/>
                             </div></td>
+                            <td><a href="create/products/${product.getId()}" class="btn btn-dark">Edit</a></td>
                         </tr>
                         </tbody>
                     </table>

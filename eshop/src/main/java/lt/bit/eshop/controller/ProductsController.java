@@ -35,6 +35,8 @@ public class ProductsController {
         model.addAttribute("categoryList", categoryService.getCategories());
         model.addAttribute("productList", productService.getProductsByCategory(categoryEntity));
 
+        model.addAttribute("slug", categorySlug);
+
         return "category-list";
     }
 }

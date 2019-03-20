@@ -47,6 +47,34 @@ public class ProductService {
         this.productRepository.save(productEntity);
     }
 
+    public ProductModel getById(Long id) {
+
+        Product productEntity = null;
+        Optional<Product> product =  productRepository.findById(id);
+        if(product.isPresent()) {
+           productEntity = product.get();
+        }
+
+        return new ProductModel(productEntity);
+    }
+
+    public void editProduct(ProductModel model, Long id) {
+        Product productEntity = null;
+        Optional<Product> product =  productRepository.findById(id);
+        if(product.isPresent()) {
+            productEntity = product.get();
+        }
+        productEntity.setName(model.getName());
+        productEntity.setDescription(model.getDescription());
+        productEntity.setPrice(model.getPrice());
+
+        Optional<CategoryEntity> categoryEnt = categoryRepository.findById(model.getCategoryId());
+
+        CategoryEntity categoryEntity = categoryEnt.get();
+        productEntity.setCategory(categoryEntity);
+
+        productRepository.save(productEntity);
+    }
 
     public List<ProductModel> getProducts() {
 
