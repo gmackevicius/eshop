@@ -31,12 +31,32 @@
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <span> ${category.name}</span>
+                            <span class="badge badge-primary"> ${category.name}</span>
                         </c:otherwise>
                     </c:choose>
                 </li>
             </c:forEach>
             </ul>
+
+            <ul class="list-group list-group-flush">
+                <br>
+                <h5>Sort by:</h5>
+                <li class="list-group-item">
+                    <c:choose>
+                        <c:when test="${slug.length() > 0}">
+                            <a href="/${slug}/price-ASC">
+                                price from lowest.
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/category-list/price-ASC">
+                                price from lowest.
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+                </li>
+            </ul>
+
         </div>
         <div class="col-10">
             <c:forEach items="${productList}" var="product">

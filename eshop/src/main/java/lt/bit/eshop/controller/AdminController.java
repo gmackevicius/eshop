@@ -40,7 +40,7 @@ public class AdminController {
             productService.createProduct(productModel);
             model.addAttribute("productModel", new ProductModel());
 
-            model.addAttribute("productList", productService.getProducts());
+            model.addAttribute("productList", productService.getProducts("id-DESC"));
             return "product-list";
         }
         System.out.println(bindingResult.hasErrors());
@@ -62,7 +62,7 @@ public class AdminController {
 
         productService.editProduct(productModel, id);
 
-        model.addAttribute("productList", productService.getProducts());
+        model.addAttribute("productList", productService.getProducts("id-DESC"));
 
         return "product-list";
     }
@@ -93,7 +93,7 @@ public class AdminController {
 
         model.addAttribute("productModel", new ProductModel());
 
-        model.addAttribute("productList", productService.getProducts());
+        model.addAttribute("productList", productService.getProducts("id-DESC"));
 
         return "product-list";
     }

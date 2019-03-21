@@ -22,21 +22,23 @@ public class ProductsController {
     @GetMapping("/category-list")
     public String index(Model model) {
 
-        model.addAttribute("productList", productService.getProducts());
+        model.addAttribute("productList", productService.getProducts("id-DESC"));
         model.addAttribute("categoryList", categoryService.getCategories());
 
         return "category-list";
     }
 
-    @GetMapping("/{categorySlug}")
-    public String products(@PathVariable String categorySlug, Model model){
+    @GetMapping("/{categorySlug}/{sortBy}")
+    public String products(@PathVariable String categorySlug, Model model, @PathVariable String sortBy){
 
         CategoryEntity categoryEntity = categoryService.findCategory(categorySlug);
         model.addAttribute("categoryList", categoryService.getCategories());
-        model.addAttribute("productList", productService.getProductsByCategory(categoryEntity));
+        model.addAttribute("productList", productService.getProductsByCategory(categoryEntity, sortBy));
 
         model.addAttribute("slug", categorySlug);
 
         return "category-list";
     }
+
+
 }

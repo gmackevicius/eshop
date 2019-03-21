@@ -9,6 +9,7 @@ import lt.bit.eshop.repository.CategoryRepository;
 import lt.bit.eshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.springframework.data.domain.Sort.Direction.ASC;
 
 @Service
 public class ProductService {
@@ -44,7 +47,7 @@ public class ProductService {
 
         productEntity.setCategory(categoryEntity);
 
-        this.productRepository.save(productEntity);
+        productRepository.save(productEntity);
     }
 
     public ProductModel getById(Long id) {
@@ -56,6 +59,10 @@ public class ProductService {
         }
 
         return new ProductModel(productEntity);
+    }
+
+    public static void modelToEntityAndSave(ProductModel model) {
+
     }
 
     public void editProduct(ProductModel model, Long id) {
@@ -76,11 +83,14 @@ public class ProductService {
         productRepository.save(productEntity);
     }
 
-    public List<ProductModel> getProducts() {
+    public List<ProductModel> getProducts(String sortBy) {
+
+
+        Sort sort = new Sort(ASC, "price");
 
         List<ProductModel> productList;
 
-        List<Product> products = (List<Product>) productRepository.findAll();
+        List<Product> products = (List<Product>) productRepository.findAll(sortBy(sortBy));
 
 //           productList = products.stream().map(p -> {
 //                ProductModel product = new ProductModel();
@@ -98,11 +108,11 @@ public class ProductService {
         return productList;
     }
 
-    public List<ProductModel> getProductsByCategory(CategoryEntity category) {
+    public List<ProductModel> getProductsByCategory(CategoryEntity category, String sortBy) {
 
         List<ProductModel> productList;
 
-        List<Product> products = (List<Product>) productRepository.findByCategory(category);
+        List<Product> products = (List<Product>) productRepository.findByCategory(category, sortBy(sortBy));
 
         return  productList = products.stream().map(ProductModel::new).collect(Collectors.toList());
     }
@@ -110,5 +120,19 @@ public class ProductService {
     public void deleteProduct(List<Long> id) {
         for(Long i : id)
         productRepository.deleteById(i);
+    }
+
+    public static Sort sortBy(String request) {
+
+        String[] result = request.split("-", 2);
+        String order = result[1];
+        String sortRequest = result[0];
+
+        if(order.equals(ASC)) {
+            return new Sort(Sort.Direction.ASC, result[0]);
+        } else {
+            return new Sort(Sort.Direction.DESC, result[0]);
+        }
+
     }
 }
