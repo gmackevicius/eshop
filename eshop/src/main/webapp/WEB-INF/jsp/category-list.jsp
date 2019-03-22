@@ -18,7 +18,7 @@
         <div class="col-2">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="/category-list">
+                    <a href="/category-list/id-DESC">
                         All categories
                     </a>
                 </li>
@@ -26,7 +26,7 @@
                 <li class="list-group-item">
                     <c:choose>
                         <c:when test="${!category.slug.equals(slug)}">
-                            <a href="/${category.slug}">
+                            <a href="/${category.slug}/id-DESC">
                                     ${category.name}
                             </a>
                         </c:when>
@@ -45,16 +45,54 @@
                     <c:choose>
                         <c:when test="${slug.length() > 0}">
                             <a href="/${slug}/price-ASC">
-                                price from lowest.
+                                price from lowest
                             </a>
                         </c:when>
                         <c:otherwise>
                             <a href="/category-list/price-ASC">
-                                price from lowest.
+                                price from lowest
                             </a>
                         </c:otherwise>
                     </c:choose>
                 </li>
+                <li class="list-group-item">
+                    <c:choose>
+                        <c:when test="${slug.length() > 0}">
+                            <a href="/${slug}/price-DESC">
+                                price from highest
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/category-list/price-DESC">
+                                price from highest
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+                </li>
+                <li class="list-group-item">
+                    <c:choose>
+                        <c:when test="${slug.length() > 0}">
+                            <a href="/${slug}/name-ASC">
+                               name
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/category-list/name-ASC">
+                                name
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+                </li>
+                <%--<li class="list-group-item">--%>
+                <%--<form:form method="POST">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="name"><h5>Search for product</h5></label>--%>
+                        <%--<form:input path="name" value="" cssClass="form-control" />--%>
+                        <%--&lt;%&ndash;<form:errors path="name" cssStyle="color: red" />&ndash;%&gt;--%>
+                        <%--<form:button class="btn btn-primary">Search</form:button>--%>
+                    <%--</div>--%>
+                <%--</form:form>    --%>
+                <%--</li>--%>
             </ul>
 
         </div>

@@ -61,6 +61,14 @@ public class ProductService {
         return new ProductModel(productEntity);
     }
 
+    public List<ProductModel> getByName(String name) {
+        List<ProductModel> productList;
+        List<Product> products =  productRepository.findByNameContaining(name);
+
+
+       return  productList = products.stream().map(ProductModel::new).collect(Collectors.toList());
+    }
+
     public static void modelToEntityAndSave(ProductModel model) {
 
     }
@@ -86,7 +94,7 @@ public class ProductService {
     public List<ProductModel> getProducts(String sortBy) {
 
 
-        Sort sort = new Sort(ASC, "price");
+//        Sort sort = new Sort(ASC, "price");
 
         List<ProductModel> productList;
 
@@ -128,10 +136,10 @@ public class ProductService {
         String order = result[1];
         String sortRequest = result[0];
 
-        if(order.equals(ASC)) {
-            return new Sort(Sort.Direction.ASC, result[0]);
+        if(order.equals("ASC")) {
+            return new Sort(Sort.Direction.ASC, sortRequest);
         } else {
-            return new Sort(Sort.Direction.DESC, result[0]);
+            return new Sort(Sort.Direction.DESC, sortRequest);
         }
 
     }
