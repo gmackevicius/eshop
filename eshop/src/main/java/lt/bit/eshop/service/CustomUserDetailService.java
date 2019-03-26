@@ -2,8 +2,10 @@ package lt.bit.eshop.service;
 
 import lt.bit.eshop.config.CustomUserDetails;
 import lt.bit.eshop.entity.UserEntity;
+import lt.bit.eshop.form.UserModel;
 import lt.bit.eshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,11 +29,11 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserEntity newUser = new UserEntity();
-        newUser.setUsername("admin");
-        newUser.setPassword(encoder.encode("secret"));
-        newUser.setEnabled(true);
-        this.userRepository.save(newUser);
+//        UserEntity newUser = new UserEntity();
+//        newUser.setUsername("admin");
+//        newUser.setPassword(encoder.encode("secret"));
+//        newUser.setEnabled(true);
+//        this.userRepository.save(newUser);
 
         Optional<UserEntity> optionalUser = this.userRepository.findByUsername(username);
 
@@ -42,7 +44,13 @@ public class CustomUserDetailService implements UserDetailsService {
     }
 
 
-//    public createNewUser(UserModel usermodel) {
-//
-//    }
+    public void createNewUser(UserModel usermodel) {
+
+        UserEntity newUser = new UserEntity(usermodel);
+
+        newUser.setPassword(encoder.encode(newUser.getPassword()));
+
+        this.userRepository.save(newUser);
+
+    }
 }

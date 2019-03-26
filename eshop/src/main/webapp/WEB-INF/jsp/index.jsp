@@ -10,5 +10,7 @@
     <div class="jumbotron">
         Eshop application
     </div>
+    <a href="/category-list/id-DESC" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Shop for products</a>
+
 </body>
 </html>

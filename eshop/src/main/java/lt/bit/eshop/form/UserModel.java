@@ -1,6 +1,8 @@
 package lt.bit.eshop.form;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class UserModel {
 
@@ -10,7 +12,8 @@ public class UserModel {
     @NotBlank(message = "Username is required!")
     private String username;
 
-    @NotBlank(message = "Password is required!")
+    @NotEmpty(message = "Password is required!")
+    @Size(min=6, max=10)
     private String password;
 
 
