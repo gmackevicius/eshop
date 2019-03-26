@@ -1,6 +1,7 @@
 package lt.bit.eshop.controller;
 
 import lt.bit.eshop.entity.CategoryEntity;
+import lt.bit.eshop.form.FilterModel;
 import lt.bit.eshop.form.ProductModel;
 import lt.bit.eshop.service.CategoryService;
 import lt.bit.eshop.service.ProductService;
@@ -21,20 +22,22 @@ public class ProductsController {
     private CategoryService categoryService;
 
     @GetMapping("/category-list/{sort}")
-    public String index(Model model, @PathVariable String sort) {
+    public String index(Model model, @PathVariable String sort, @ModelAttribute FilterModel filterModel) {
 
-        model.addAttribute("productList", productService.getProducts(sort));
         model.addAttribute("categoryList", categoryService.getCategories());
+        model.addAttribute("filterModel", filterModel);
+        model.addAttribute("productList", productService.getProducts(sort, filterModel.getName()));
 
         return "category-list";
     }
 
     @GetMapping("/{categorySlug}/{sort}")
-    public String products(@PathVariable String categorySlug, Model model, @PathVariable String sort){
+    public String products(@PathVariable String categorySlug, Model model, @PathVariable String sort, @ModelAttribute FilterModel filterModel){
 
+        model.addAttribute("filterModel", filterModel);
         CategoryEntity categoryEntity = categoryService.findCategory(categorySlug);
         model.addAttribute("categoryList", categoryService.getCategories());
-        model.addAttribute("productList", productService.getProductsByCategory(categoryEntity, sort));
+        model.addAttribute("productList", productService.getProductsByCategory(categoryEntity, sort, filterModel.getName()));
 
         model.addAttribute("slug", categorySlug);
 

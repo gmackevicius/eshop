@@ -15,6 +15,9 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByCategory(CategoryEntity entity, Sort sort);
+
+    List<Product> findByCategoryAndNameContaining(CategoryEntity entity, Sort sort, String name);
+
     List<Product> findByNameContaining(String name);
 
 //    @Query("SELECT p FROM product p WHERE p.category = ?1 ")

@@ -83,16 +83,18 @@
                         </c:otherwise>
                     </c:choose>
                 </li>
-                <%--<li class="list-group-item">--%>
-                <%--<form:form method="POST">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label for="name"><h5>Search for product</h5></label>--%>
-                        <%--<form:input path="name" value="" cssClass="form-control" />--%>
-                        <%--&lt;%&ndash;<form:errors path="name" cssStyle="color: red" />&ndash;%&gt;--%>
-                        <%--<form:button class="btn btn-primary">Search</form:button>--%>
-                    <%--</div>--%>
-                <%--</form:form>    --%>
-                <%--</li>--%>
+                <li class="list-group-item">
+
+                    <div class="form-group">
+                        <form:form method="GET" modelAttribute="filterModel">
+                        <label for="name"><h5>Search for product</h5></label>
+                        <form:input path="name" cssClass="form-control" />
+                        <%--<form:errors path="name" cssStyle="color: red" />--%>
+                        <form:button class="btn btn-primary">Search</form:button>
+                        </form:form>
+                    </div>
+
+                </li>
             </ul>
 
         </div>

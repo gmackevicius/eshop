@@ -92,13 +92,25 @@ public class ProductService {
     }
 
     public List<ProductModel> getProducts(String sortBy) {
+        return getProducts(sortBy, null);
+    }
+
+    public List<ProductModel> getProducts(String sortBy, String name) {
 
 
-//        Sort sort = new Sort(ASC, "price");
+
 
         List<ProductModel> productList;
+        List<Product> products ;
 
-        List<Product> products = (List<Product>) productRepository.findAll(sortBy(sortBy));
+        if(name != null) {
+            products = this.productRepository.findByNameContaining(name);
+        } else {
+            products = this.productRepository.findAll(sortBy(sortBy));
+        }
+
+
+
 
 //           productList = products.stream().map(p -> {
 //                ProductModel product = new ProductModel();
@@ -117,10 +129,20 @@ public class ProductService {
     }
 
     public List<ProductModel> getProductsByCategory(CategoryEntity category, String sortBy) {
+        return getProductsByCategory(category, sortBy, null);
+    }
+
+    public List<ProductModel> getProductsByCategory(CategoryEntity category, String sortBy, String name) {
 
         List<ProductModel> productList;
 
-        List<Product> products = (List<Product>) productRepository.findByCategory(category, sortBy(sortBy));
+        List<Product> products;
+
+        if(name != null) {
+           products = productRepository.findByCategoryAndNameContaining(category, sortBy(sortBy), name);
+        } else {
+           products = productRepository.findByCategory(category, sortBy(sortBy));
+        }
 
         return  productList = products.stream().map(ProductModel::new).collect(Collectors.toList());
     }
