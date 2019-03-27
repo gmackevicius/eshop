@@ -9,19 +9,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class CustomUserDetails implements UserDetails {
 
     private final UserEntity user;
 
-    public CustomUserDetails(UserEntity user) {
+    private Set<GrantedAuthority> authorities;
+
+    public CustomUserDetails(UserEntity user, Set<GrantedAuthority> authorities) {
         this.user = user;
+        this.authorities = authorities;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        final List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("User"));
-        return authorities;
+
+        return this.authorities;
     }
 
     @Override

@@ -14,7 +14,8 @@ import javax.validation.Valid;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 @Controller
-public class RegistrationController {
+@RequestMapping("/users")
+public class UserController {
 
     @Autowired
     private CustomUserDetailService userService;
@@ -30,20 +31,21 @@ public class RegistrationController {
     @RequestMapping( value = "/register", method = RequestMethod.POST)
     public String newUser(@Valid @ModelAttribute UserModel userModel, BindingResult bindingResult, Model model )  {
 
-
-        try {
-            userService.createNewUser(userModel);
-            model.addAttribute("userModel", new UserModel());
-            return "index";
-        } catch(Exception e) {
-            model.addAttribute("error", "Username taken!" );
-//            model.addAttribute("userModel", new UserModel());
-            return "registration-form";
+        if(!bindingResult.hasErrors()) {
+            try {
+                userService.createNewUser(userModel);
+                model.addAttribute("userModel", new UserModel());
+                return "index";
+            } catch (Exception e) {
+                model.addAttribute("error", "Username taken!");
+            }
         }
 
 
 
 
+
+        return "registration-form";
     }
 
 

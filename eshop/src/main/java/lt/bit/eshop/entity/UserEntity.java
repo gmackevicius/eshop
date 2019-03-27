@@ -4,6 +4,7 @@ package lt.bit.eshop.entity;
 import lt.bit.eshop.form.UserModel;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +21,10 @@ public class UserEntity {
     private String password;
 
     private boolean enabled = true;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private Set<RoleEntity> roles;
 
 
     public UserEntity(UserModel userModel) {
@@ -75,5 +80,9 @@ public class UserEntity {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Set<RoleEntity> getRoles() {
+        return roles;
     }
 }

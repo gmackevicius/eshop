@@ -3,7 +3,9 @@ package lt.bit.eshop.controller;
 
 import lt.bit.eshop.form.CategoryModel;
 import lt.bit.eshop.form.ProductModel;
+import lt.bit.eshop.form.UserModel;
 import lt.bit.eshop.service.CategoryService;
+import lt.bit.eshop.service.CustomUserDetailService;
 import lt.bit.eshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ public class AdminController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private CustomUserDetailService userService;
 
     @RequestMapping("/create/products")
     public String productForm(Model model) {
@@ -114,6 +119,15 @@ public class AdminController {
 
 
         return "redirect:category";
+    }
+
+    @RequestMapping("/user-list")
+    public String userList(Model model) {
+
+        model.addAttribute("userModel", new UserModel());
+        model.addAttribute("userList", userService.getAllUsers());
+
+        return "user-list";
     }
 
 

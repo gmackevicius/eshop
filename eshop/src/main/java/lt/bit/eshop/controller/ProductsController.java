@@ -31,7 +31,7 @@ public class ProductsController {
         return "category-list";
     }
 
-    @GetMapping("/{categorySlug}/{sort}")
+    @GetMapping("/category-list/{categorySlug}/{sort}")
     public String products(@PathVariable String categorySlug, Model model, @PathVariable String sort, @ModelAttribute FilterModel filterModel){
 
         model.addAttribute("filterModel", filterModel);

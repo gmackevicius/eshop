@@ -26,7 +26,7 @@
                 <li class="list-group-item">
                     <c:choose>
                         <c:when test="${!category.slug.equals(slug)}">
-                            <a href="/${category.slug}/id-DESC">
+                            <a href="/category-list/${category.slug}/id-DESC">
                                     ${category.name}
                             </a>
                         </c:when>
