@@ -28,6 +28,7 @@
                             <c:forEach items="${user.getRoles()}" var="r">
                             <td>${r}</td>
                             </c:forEach>
+                            <%--<td><a href="/user-list/${user.getId()}" class="btn btn-dark">Edit Role</a></td>--%>
                         </tr>
                         </tbody>
                     </table>

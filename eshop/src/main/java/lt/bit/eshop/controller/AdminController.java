@@ -1,12 +1,8 @@
 package lt.bit.eshop.controller;
 
 
-import lt.bit.eshop.form.CategoryModel;
-import lt.bit.eshop.form.ProductModel;
-import lt.bit.eshop.form.UserModel;
-import lt.bit.eshop.service.CategoryService;
-import lt.bit.eshop.service.CustomUserDetailService;
-import lt.bit.eshop.service.ProductService;
+import lt.bit.eshop.form.*;
+import lt.bit.eshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +25,12 @@ public class AdminController {
 
     @Autowired
     private CustomUserDetailService userService;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private AuthorityService authorityService;
 
     @RequestMapping("/create/products")
     public String productForm(Model model) {
@@ -128,6 +130,54 @@ public class AdminController {
         model.addAttribute("userList", userService.getAllUsers());
 
         return "user-list";
+    }
+
+    @RequestMapping("/create/role")
+    public String roleAndauthorityForm(Model model) {
+
+        model.addAttribute("roleModel", new RoleModel());
+        model.addAttribute("authorityModel", new AuthorityModel());
+        model.addAttribute("roleList", roleService.getAllRoles());
+
+        return "role-form";
+    }
+
+    @RequestMapping(value = "/create/role", method = RequestMethod.POST)
+    public String createRole(@Valid @ModelAttribute RoleModel roleModel, @ModelAttribute AuthorityModel authorityModel, BindingResult bindingResult, Model model) {
+
+
+        if(!bindingResult.hasErrors()) {
+            roleService.createRole(roleModel);
+            model.addAttribute("roleModel", new RoleModel());
+            model.addAttribute("roleList", roleService.getAllRoles());
+            return "redirect:role";
+        }
+        System.out.println(bindingResult.hasErrors());
+        return "role-form";
+    }
+
+    @RequestMapping(value = "/create/authority", method = RequestMethod.POST)
+    public String createAuthority(@Valid @ModelAttribute AuthorityModel authorityModel, @ModelAttribute RoleModel roleModel, BindingResult bindingResult, Model model) {
+
+
+        if(!bindingResult.hasErrors()) {
+            authorityService.createAuthority(authorityModel);
+            model.addAttribute("authorityModel", new AuthorityModel());
+//            model.addAttribute("roleList", roleService.getAllRoles());
+            return "redirect:role";
+        }
+        System.out.println(bindingResult.hasErrors());
+        return "role-form";
+    }
+
+    @RequestMapping(value = "/give-authorities/{id}")
+    public String authSelection(@PathVariable Long id, @ModelAttribute AuthorityModel authorityModel, @ModelAttribute RoleModel roleModel, Model model) {
+
+        model.addAttribute("roleModel", new RoleModel());
+        model.addAttribute("roleList", roleService.getAllRoles());
+        model.addAttribute("authorityList", authorityService.getAllAuthorities());
+
+        return "role-form";
     }
 
 

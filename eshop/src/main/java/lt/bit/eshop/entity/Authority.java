@@ -27,4 +27,11 @@ public class Authority implements GrantedAuthority {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
