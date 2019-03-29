@@ -1,6 +1,8 @@
 package lt.bit.eshop.entity;
 
 
+import lt.bit.eshop.form.RoleModel;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -18,6 +20,12 @@ public class RoleEntity {
     @JoinTable(name = "roles_authorities", joinColumns = {@JoinColumn(name = "role_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")} )
     private Set<Authority> authorities;
 
+    public RoleEntity(RoleModel model) {
+        this.name = model.getName();
+    }
+
+    public RoleEntity() {
+    }
 
     public Set<Authority> getAuthorities() {
         return authorities;

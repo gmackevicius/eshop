@@ -28,4 +28,8 @@ public class AuthorityService {
 
         return roles.stream().map(AuthorityModel::new).collect(Collectors.toList());
     }
+    public void deleteAuthority(List<Long> id) {
+        for(Long i : id)
+            authorityRepository.deleteById(i);
+    }
 }

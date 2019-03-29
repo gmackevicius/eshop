@@ -17,8 +17,7 @@ public class RoleService {
     private RoleRepository roleRepository;
 
     public void createRole(RoleModel model) {
-        RoleEntity entity = new RoleEntity();
-        entity.setName(model.getName());
+        RoleEntity entity = new RoleEntity(model);
 
         roleRepository.save(entity);
     }
@@ -27,6 +26,9 @@ public class RoleService {
         List<RoleEntity> roles = (List<RoleEntity>) roleRepository.findAll();
 
         return roles.stream().map(RoleModel::new).collect(Collectors.toList());
+    }
+    public void deleteRole(Long id) {
+        roleRepository.deleteById(id);
     }
 
 }

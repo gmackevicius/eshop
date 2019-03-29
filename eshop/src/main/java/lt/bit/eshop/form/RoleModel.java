@@ -4,6 +4,7 @@ import lt.bit.eshop.entity.RoleEntity;
 
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RoleModel {
 
@@ -21,6 +22,7 @@ public class RoleModel {
     public RoleModel(RoleEntity entity) {
         this.id = entity.getId();
         this.name = entity.getName();
+        this.authorities = entity.getAuthorities().stream().map(AuthorityModel::new).collect(Collectors.toList());
     }
 
     public RoleModel() {

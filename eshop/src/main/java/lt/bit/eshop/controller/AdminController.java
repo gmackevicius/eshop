@@ -139,6 +139,7 @@ public class AdminController {
         model.addAttribute("authorityModel", new AuthorityModel());
         model.addAttribute("roleList", roleService.getAllRoles());
 
+
         return "role-form";
     }
 
@@ -149,11 +150,17 @@ public class AdminController {
         if(!bindingResult.hasErrors()) {
             roleService.createRole(roleModel);
             model.addAttribute("roleModel", new RoleModel());
-            model.addAttribute("roleList", roleService.getAllRoles());
+//            model.addAttribute("roleList", roleService.getAllRoles());
             return "redirect:role";
         }
         System.out.println(bindingResult.hasErrors());
         return "role-form";
+    }
+
+    @RequestMapping(value = "/delete-role/", method = RequestMethod.POST)
+    public String deleteRole(@RequestParam Long id, Model model) {
+        roleService.deleteRole(id);
+        return roleAndauthorityForm(model);
     }
 
     @RequestMapping(value = "/create/authority", method = RequestMethod.POST)
@@ -170,12 +177,34 @@ public class AdminController {
         return "role-form";
     }
 
-    @RequestMapping(value = "/give-authorities/{id}")
-    public String authSelection(@PathVariable Long id, @ModelAttribute AuthorityModel authorityModel, @ModelAttribute RoleModel roleModel, Model model) {
+    @RequestMapping("/delete-authorities/")
+    public String triggerAuthDelete(Model model) {
+        model.addAttribute("trigger", true);
+        roleAndauthorityForm(model);
+        model.addAttribute("authorityList", authorityService.getAllAuthorities());
 
+
+        return "role-form";
+    }
+
+    @RequestMapping(value = "/delete-authorities/", method = RequestMethod.POST)
+    public String deleteAuthorities(@RequestParam List<Long> id, Model model) {
+
+        authorityService.deleteAuthority(id);
+
+        model.addAttribute("trigger", false);
+
+        return roleAndauthorityForm(model);
+    }
+
+    @RequestMapping(value = "/give-authorities/")
+    public String authSelection( @ModelAttribute AuthorityModel authorityModel, @ModelAttribute RoleModel roleModel, Model model) {
+
+        model.addAttribute("selected", true);
         model.addAttribute("roleModel", new RoleModel());
         model.addAttribute("roleList", roleService.getAllRoles());
         model.addAttribute("authorityList", authorityService.getAllAuthorities());
+
 
         return "role-form";
     }
