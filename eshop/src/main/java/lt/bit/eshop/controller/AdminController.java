@@ -132,6 +132,26 @@ public class AdminController {
         return "user-list";
     }
 
+    @RequestMapping("/user-list/edit-roles/{id}")
+    public String triggerEditRoleForm(@PathVariable Long id, Model model) {
+
+        model.addAttribute("roleList", roleService.getAllRoles());
+        model.addAttribute("triggered", true);
+        model.addAttribute("user", userService.getById(id));
+
+        return userList(model);
+    }
+
+    @RequestMapping(value = "/user-list/edit-roles/{ID}", method = RequestMethod.POST)
+    public String editRole(@PathVariable Long ID, Model model, UserModel userModel, @RequestParam List<Long> id) {
+
+        userService.giveRole(ID, id);
+        model.addAttribute("triggered", false);
+
+
+        return "redirect:/admin/user-list";
+    }
+
     @RequestMapping("/create/role")
     public String roleAndauthorityForm(Model model) {
 

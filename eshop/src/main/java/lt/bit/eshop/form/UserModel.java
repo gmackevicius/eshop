@@ -8,8 +8,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserModel {
+
+    private Long id;
 
     @NotBlank(message = "Name is required!")
     private String name;
@@ -21,15 +24,13 @@ public class UserModel {
     @Size(min=6, max=10)
     private String password;
 
-    private List<String> roles = new ArrayList<>();
+    private List<RoleModel> roles = new ArrayList<>();
 
     public UserModel(UserEntity entity) {
+        this.id = entity.getId();
         this.name = entity.getName();
         this.username = entity.getUsername();
-
-        for(RoleEntity r : entity.getRoles() ) {
-            this.roles.add(r.getName());
-        }
+        this.roles = entity.getRoles().stream().map(RoleModel::new).collect(Collectors.toList());
     }
 
     public UserModel() {
@@ -59,11 +60,19 @@ public class UserModel {
         this.password = password;
     }
 
-    public List<String> getRoles() {
+    public List<RoleModel> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<RoleModel> roles) {
         this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
