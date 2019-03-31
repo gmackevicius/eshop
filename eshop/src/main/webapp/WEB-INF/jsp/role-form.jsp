@@ -51,7 +51,7 @@
                     <c:forEach items="${roleList}" var="role">
 
                         <li class="list-group-item" style="display: flex; justify-content: space-between;">
-                        ${role.getName()} <a href="/admin/give-authorities/${role.getId()}" class="btn btn-primary">Change authorities</a> <form:button name="id" value="${role.getId()}" class="btn btn-primary" >Delete</form:button>
+                        ${role.getName()}<div style="margin-left: 25%; display: flex;"><a href="/admin/give-authorities/${role.getId()}" style="margin-right: 5px;" class="btn btn-primary">Change authorities</a> <form:button name="id" value="${role.getId()}" class="btn btn-primary" >Delete</form:button></div>
                         </li >
 
                     </c:forEach>

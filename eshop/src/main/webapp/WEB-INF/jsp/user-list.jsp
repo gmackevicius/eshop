@@ -12,7 +12,6 @@
     <div class="row">
 
             <div class="col-6">
-                <c:forEach items="${userList}" var="user">
                     <table class="table">
                         <thead>
                         <tr>
@@ -23,8 +22,10 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="${userList}" var="user">
+
                         <tr>
-                            <th scope="row">${user.getName()}</th>
+                            <td scope="row">${user.getName()}</td>
                             <td>${user.getUsername()}</td>
                             <td>
                                 <c:forEach items="${user.getRoles()}" var="r">
@@ -41,9 +42,10 @@
                             </c:choose>
 
                         </tr>
+                        </c:forEach>
+
                         </tbody>
                     </table>
-                </c:forEach>
 
 
             </div>

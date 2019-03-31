@@ -158,9 +158,16 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/user-list/edit-roles/{ID}", method = RequestMethod.POST)
-    public String editUserRole(@PathVariable Long ID, Model model, @RequestParam List<Long> id) {
+    public String editUserRole(@PathVariable Long ID, Model model, @RequestParam(value="id", required = false) List<Long> id) {
 
-        userService.giveRole(ID, id);
+
+        if(id != null) {
+            userService.giveRole(ID, id);        }
+        else {
+            id = new ArrayList<>();
+            userService.giveRole(ID, id);
+        }
+
         model.addAttribute("triggered", false);
 
 
@@ -259,9 +266,17 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/give-authorities/{ID}", method = RequestMethod.POST)
-    public String editRoleAuth(@PathVariable Long ID, Model model, RoleModel roleModel, @RequestParam List<Long> id) {
+    public String editRoleAuth(@PathVariable Long ID, Model model, RoleModel roleModel, @RequestParam(value = "id", required = false) List<Long> id) {
 
-        roleService.giveAuthorities(ID, id);
+
+        if(id != null) {
+            roleService.giveAuthorities(ID, id);
+        }
+        else {
+            id = new ArrayList<>();
+            roleService.giveAuthorities(ID, id);
+        }
+
         model.addAttribute("triggered", false);
 
 
