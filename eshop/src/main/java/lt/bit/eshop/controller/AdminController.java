@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -135,15 +136,29 @@ public class AdminController {
     @RequestMapping("/user-list/edit-roles/{id}")
     public String triggerEditRoleForm(@PathVariable Long id, Model model) {
 
-        model.addAttribute("roleList", roleService.getAllRoles());
+        List<RoleModel> allRoles = roleService.getAllRoles();
+        List<RoleModel> userRoles =  userService.getById(id).getRoles();
+        List<RoleModel> userOwnedRoles = new ArrayList<>();
+        List<RoleModel> nonOwnedRoles = new ArrayList<>();
+
+        for(RoleModel r: allRoles) {
+            if(userRoles.contains(r)) {
+                userOwnedRoles.add(r);
+            }
+            else{
+                nonOwnedRoles.add(r);
+            }
+        }
+
+        model.addAttribute("checked", userOwnedRoles);
+        model.addAttribute("unchecked", nonOwnedRoles);
         model.addAttribute("triggered", true);
-        model.addAttribute("user", userService.getById(id));
 
         return userList(model);
     }
 
     @RequestMapping(value = "/user-list/edit-roles/{ID}", method = RequestMethod.POST)
-    public String editRole(@PathVariable Long ID, Model model, UserModel userModel, @RequestParam List<Long> id) {
+    public String editUserRole(@PathVariable Long ID, Model model, @RequestParam List<Long> id) {
 
         userService.giveRole(ID, id);
         model.addAttribute("triggered", false);
@@ -217,16 +232,40 @@ public class AdminController {
         return roleAndauthorityForm(model);
     }
 
-    @RequestMapping(value = "/give-authorities/")
-    public String authSelection( @ModelAttribute AuthorityModel authorityModel, @ModelAttribute RoleModel roleModel, Model model) {
+    @RequestMapping(value = "/give-authorities/{id}")
+    public String triggerAuthSelection(@PathVariable Long id, @ModelAttribute AuthorityModel authorityModel, @ModelAttribute RoleModel roleModel, Model model) {
 
-        model.addAttribute("selected", true);
-        model.addAttribute("roleModel", new RoleModel());
-        model.addAttribute("roleList", roleService.getAllRoles());
-        model.addAttribute("authorityList", authorityService.getAllAuthorities());
+        List<AuthorityModel> allAuthorities = authorityService.getAllAuthorities();
+        List<AuthorityModel> roleAuthorities = roleService.getById(id).getAuthorities();
+        List<AuthorityModel> roleOwnedAuthorities = new ArrayList<>();
+        List<AuthorityModel> nonOwnedAuthorities = new ArrayList<>();
 
+        for(AuthorityModel a: allAuthorities) {
+            if(roleAuthorities.contains(a)) {
+                roleOwnedAuthorities.add(a);
+            }
+            else{
+                nonOwnedAuthorities.add(a);
+            }
+        }
+
+        model.addAttribute("checked", roleOwnedAuthorities);
+        model.addAttribute("unchecked", nonOwnedAuthorities);
+        model.addAttribute("triggered", true);
+        model.addAttribute("selectedRoleId", id);
+        roleAndauthorityForm(model);
 
         return "role-form";
+    }
+
+    @RequestMapping(value = "/give-authorities/{ID}", method = RequestMethod.POST)
+    public String editRoleAuth(@PathVariable Long ID, Model model, RoleModel roleModel, @RequestParam List<Long> id) {
+
+        roleService.giveAuthorities(ID, id);
+        model.addAttribute("triggered", false);
+
+
+        return "redirect:/admin/create/role";
     }
 
 

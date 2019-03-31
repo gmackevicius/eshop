@@ -29,7 +29,6 @@
                     <form:button class="btn btn-primary">Create</form:button>
                     </form:form>
                 </div>
-                <a href="/admin/give-authorities/" class="btn btn-primary">Change authorities</a>
                 <a href="/admin/delete-authorities/" class="btn btn-primary">Delete authorities</a>
                 <c:if test="${trigger == true}">
                     <ul class="list-group">
@@ -52,37 +51,29 @@
                     <c:forEach items="${roleList}" var="role">
 
                         <li class="list-group-item" style="display: flex; justify-content: space-between;">
-                        ${role.getName()} <form:button name="id" value="${role.getId()}" class="btn btn-primary" >Delete</form:button>
-                        </li>
-                        <c:if test="${authorityList != null and selected == true}">
-                            <ul class="list-group">
-                                <c:forEach items="${authorityList}" var="auth">
-                                    <c:forEach items="${role.getAuthorities()}" var="a">
-                                    <li class="list-group-item-secondary" style="display: flex;">
-                                        <c:choose>
-                                        <c:when test="${a.getId() == auth.getId()}">
-                                        <form:checkbox path="id" cssClass="form-check-input" cssStyle="margin-left: 80%;" value="${auth.getId()}" checked="checked" />
-                                        <span style="margin-left: 5%;">${auth.getName()}</span>
-                                        </c:when>
-                                        <c:otherwise>
-                                        <form:checkbox path="id" cssClass="form-check-input" cssStyle="margin-left: 80%;" value="${auth.getId()}"/>
-                                        <span style="margin-left: 5%;">${auth.getName()}</span>
-                                        </c:otherwise>
-                                        </c:choose>
-                                    </li>
-                                    </c:forEach>
-                                </c:forEach>
-
-                            </ul>
-                        </c:if>
+                        ${role.getName()} <a href="/admin/give-authorities/${role.getId()}" class="btn btn-primary">Change authorities</a> <form:button name="id" value="${role.getId()}" class="btn btn-primary" >Delete</form:button>
+                        </li >
 
                     </c:forEach>
-                    <c:if test="${authorityList != null and selected == true}">
-                    <form:button class="btn btn-primary">Set</form:button>
-                    </c:if>
                 </form:form>
             </ul>
-
+                    <c:if test="${triggered == true}">
+                    <div>
+                        <form:form  method="POST" action="/admin/give-authorities/${selectedRoleId}" modelAttribute="roleModel">
+                        <ul class="list-group">
+                            <li class="list-group-item-secondary" style="display: flex; flex-direction: column;">
+                                <form:checkboxes path="id" items="${checked}" cssClass="form-check-input" itemLabel="name" itemValue="id" checked="checked" />
+                            </li>
+                            <li class="list-group-item-secondary" style="display: flex; flex-direction: column;">
+                                <form:checkboxes path="id" items="${unchecked}" cssClass="form-check-input" itemLabel="name" itemValue="id"/>
+                            </li>
+                            <li class="list-group-item-secondary" style="display: flex;">
+                                <form:button  class="btn btn-primary">Set</form:button>
+                            </li>
+                        </ul>
+                        </form:form>
+                    </div>
+                    </c:if>
         </div>
     </div>
 </div>

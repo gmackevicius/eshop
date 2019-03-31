@@ -4,6 +4,7 @@ import lt.bit.eshop.entity.RoleEntity;
 
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class RoleModel {
@@ -50,5 +51,18 @@ public class RoleModel {
 
     public void setAuthorities(List<AuthorityModel> authorities) {
         this.authorities = authorities;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RoleModel roleModel = (RoleModel) o;
+        return id.equals(roleModel.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -19,17 +19,18 @@
                             <th scope="col" style="width: 20%;">Name</th>
                             <th scope="col" style="width: 20%;">Username</th>
                             <th scope="col" style="width: 40%;">Roles</th>
-                            <th scope="col" style="width: 10%;"></th>
-                            <th scope="col" style="width: 10%;"></th>
+
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <th scope="row">${user.getName()}</th>
                             <td>${user.getUsername()}</td>
-                            <c:forEach items="${user.getRoles()}" var="r">
-                            <td>${r.getName()}</td>
-                            </c:forEach>
+                            <td>
+                                <c:forEach items="${user.getRoles()}" var="r">
+                                ${r.getName()}
+                                </c:forEach>
+                            </td>
                             <c:choose>
                                 <c:when test="${triggered != true}">
                                     <td><a href="/admin/user-list/edit-roles/${user.getId()}" class="btn btn-dark">Edit Roles</a></td>
@@ -47,28 +48,33 @@
 
             </div>
             <div class="col-4">
-                    <c:if test="${triggered == true and roleList != null}">
+                    <c:if test="${triggered == true}">
                         <form:form method="POST"  modelAttribute="userModel">
                             <ul class="list-group">
                                 <li class="list-group-item" style="display: flex; flex-direction: column;">
-
-                                        <c:forEach items="${roleList}" var="role">
-                                            <c:forEach items="${user.getRoles()}" var="ur">
-                                            <c:choose>
-                                                <c:when test="${user.getRoles().size() > 0 and ur.getId() == role.getId()}">
-                                                    <form:checkbox path="id" label="${role.getName()}" value="${role.getId()}" checked="checked"/>
-                                                </c:when>
-                                                <%--<c:when test="${user.getRoles().size() == 0 or user.getRoles() == null}">--%>
-                                                    <%--<form:checkbox path="id" label="${role.getName()}" value="${role.getId()}"/>--%>
+                                        <%--<c:forEach items="${roleList}" var="role">--%>
+                                            <%--<c:forEach items="${user.getRoles()}" var="ur">--%>
+                                            <%--<c:choose>--%>
+                                                <%--<c:when test="${user.getRoles().size() > 0 and ur.getId() == role.getId()}">--%>
+                                                    <%--<form:checkbox path="id" label="${role.getName()}" value="${role.getId()}" checked="checked"/>--%>
                                                 <%--</c:when>--%>
-                                                <c:otherwise>
-                                                    <form:checkbox path="id" label="${role.getName()}" value="${role.getId()}"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            </c:forEach>
-                                        </c:forEach>
-
-                                    <%--<form:checkboxes path="id" test="" items="${roleList}" itemLabel="name" itemValue="id" />--%>
+                                                <%--&lt;%&ndash;<c:when test="${user.getRoles().size() == 0 or user.getRoles() == null}">&ndash;%&gt;--%>
+                                                    <%--&lt;%&ndash;<form:checkbox path="id" label="${role.getName()}" value="${role.getId()}"/>&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;</c:when>&ndash;%&gt;--%>
+                                                <%--<c:otherwise>--%>
+                                                    <%--<form:checkbox path="id" label="${role.getName()}" value="${role.getId()}"/>--%>
+                                                <%--</c:otherwise>--%>
+                                            <%--</c:choose>--%>
+                                            <%--</c:forEach>--%>
+                                        <%--</c:forEach>--%>
+                                    <c:if test="${checked.size() > 0}">
+                                    <form:checkboxes path="id" items="${checked}" itemLabel="name" itemValue="id" checked="checked" />
+                                    </c:if>
+                                </li>
+                                <li class="list-group-item" style="display: flex; flex-direction: column;">
+                                    <c:if test="${unchecked.size() > 0}">
+                                    <form:checkboxes path="id" items="${unchecked}" itemLabel="name" itemValue="id"/>
+                                    </c:if>
                                 </li>
                                 <li class="list-group-item"><form:button class="btn btn-primary">Set</form:button></li>
                             </ul>

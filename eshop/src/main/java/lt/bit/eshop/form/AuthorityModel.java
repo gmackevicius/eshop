@@ -3,6 +3,7 @@ package lt.bit.eshop.form;
 import lt.bit.eshop.entity.Authority;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 
 public class AuthorityModel {
 
@@ -38,5 +39,18 @@ public class AuthorityModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AuthorityModel that = (AuthorityModel) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

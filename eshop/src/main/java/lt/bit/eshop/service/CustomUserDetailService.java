@@ -70,7 +70,7 @@ public class CustomUserDetailService implements UserDetailsService {
              return new UserModel(userOptional.get());
          }
 
-         return null;
+         return null; // dead end
     }
 
 
