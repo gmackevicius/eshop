@@ -13,26 +13,31 @@
             <h2>Create new user!</h2>
             <form:form method="POST" modelAttribute="userModel">
                 <div class="form-group">
-                <label for="name">Your name:</label>
-                <form:input path="name" cssClass="form-control" />
-                <form:errors path="name" cssStyle="color: red" />
+                    <label for="name">Your name:</label>
+                    <form:input path="name" cssClass="form-control" />
+                    <form:errors path="name" cssStyle="color: red" />
                 </div>
                 <div class="form-group">
-                <label for="username">Your username:</label>
-                <form:input path="username" cssClass="form-control" />
-                <form:errors path="username" cssStyle="color: red" />
+                    <label for="username">Your username:</label>
+                    <form:input path="username" cssClass="form-control" />
+                    <form:errors path="username" cssStyle="color: red" />
                 </div>
                 <div class="form-group">
-                <label for="password">Your password:</label>
-                <form:password path="password" cssClass="form-control" />
-                <form:errors path="password" cssStyle="color: red" />
+                    <label for="password">Your password:</label>
+                    <form:password path="password" cssClass="form-control" />
+                    <form:errors path="password" cssStyle="color: red" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm password:</label>
+                    <form:password path="matchPassword" cssClass="form-control" />
+                    <%--<c:if test="${not empty error}">--%>
+                        <%--<span style="color: red">${error}</span>--%>
+                    <%--</c:if>--%>
+                    <form:errors path="matchPassword" cssStyle="color: red" />
                 </div>
                 <form:button class="btn btn-primary">Register</form:button>
             </form:form>
 
-            <c:if test="${error.length() > 0}">
-                <h3 cssStyle="color: red">${error}</h3>
-            </c:if>
         </div>
 
     </div>

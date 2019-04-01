@@ -4,6 +4,7 @@ package lt.bit.eshop.controller;
 import lt.bit.eshop.form.FilterModel;
 import lt.bit.eshop.form.UserModel;
 import lt.bit.eshop.service.CustomUserDetailService;
+import lt.bit.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 public class UserController {
 
     @Autowired
-    private CustomUserDetailService userService;
+    private UserService userService;
 
     @GetMapping("/register")
     public String index(Model model) {
@@ -40,6 +41,14 @@ public class UserController {
                 model.addAttribute("error", "Username taken!");
             }
         }
+
+        String matchError = bindingResult.getAllErrors().stream()
+                .filter(e -> e.getObjectName().equals("userModel"))
+                .map(e -> e.getDefaultMessage())
+                .findFirst()
+                .orElse("");
+
+        model.addAttribute("error", matchError);
 
         return "registration-form";
     }

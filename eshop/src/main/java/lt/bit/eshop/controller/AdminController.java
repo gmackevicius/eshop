@@ -25,7 +25,7 @@ public class AdminController {
     private CategoryService categoryService;
 
     @Autowired
-    private CustomUserDetailService userService;
+    private UserService userService;
 
     @Autowired
     private RoleService roleService;
@@ -186,15 +186,17 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/create/role", method = RequestMethod.POST)
-    public String createRole(@Valid @ModelAttribute RoleModel roleModel, @ModelAttribute AuthorityModel authorityModel, BindingResult bindingResult, Model model) {
+    public String createRole(@Valid @ModelAttribute RoleModel roleModel, BindingResult bindingResult, Model model) {
 
 
         if(!bindingResult.hasErrors()) {
             roleService.createRole(roleModel);
             model.addAttribute("roleModel", new RoleModel());
-//            model.addAttribute("roleList", roleService.getAllRoles());
             return "redirect:role";
         }
+        model.addAttribute("authorityModel", new AuthorityModel());
+        model.addAttribute("roleList", roleService.getAllRoles());
+        model.addAttribute("authorityList", authorityService.getAllAuthorities());
         System.out.println(bindingResult.hasErrors());
         return "role-form";
     }
@@ -206,15 +208,17 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/create/authority", method = RequestMethod.POST)
-    public String createAuthority(@Valid @ModelAttribute AuthorityModel authorityModel, @ModelAttribute RoleModel roleModel, BindingResult bindingResult, Model model) {
+    public String createAuthority(@Valid @ModelAttribute AuthorityModel authorityModel, BindingResult bindingResult, Model model) {
 
 
         if(!bindingResult.hasErrors()) {
             authorityService.createAuthority(authorityModel);
             model.addAttribute("authorityModel", new AuthorityModel());
-//            model.addAttribute("roleList", roleService.getAllRoles());
             return "redirect:role";
         }
+        model.addAttribute("roleModel", new RoleModel());
+        model.addAttribute("roleList", roleService.getAllRoles());
+        model.addAttribute("authorityList", authorityService.getAllAuthorities());
         System.out.println(bindingResult.hasErrors());
         return "role-form";
     }

@@ -15,21 +15,34 @@
                 <div class="form-group">
                     <form:form method="POST" action="/admin/create/role" modelAttribute="roleModel">
                     <label for="name">Role name:</label>
+                    <div style="display: flex;">
                     <form:input path="name" cssClass="form-control" />
-                    <form:errors path="name" cssStyle="color: red" />
                     <form:button class="btn btn-primary">Create</form:button>
+                    </div>
+                    <form:errors path="name" cssStyle="color: red" />
                     </form:form>
                 </div>
 
                 <div class="form-group">
                     <form:form method="POST" action="/admin/create/authority" modelAttribute="authorityModel">
                     <label for="name">Authority name:</label>
+                    <div style="display: flex;">
                     <form:input path="name" cssClass="form-control" />
-                    <form:errors path="name" cssStyle="color: red" />
                     <form:button class="btn btn-primary">Create</form:button>
+
+                    </div>
+                    <form:errors path="name" cssStyle="color: red" />
                     </form:form>
                 </div>
-                <a href="/admin/delete-authorities/" class="btn btn-primary">Delete authorities</a>
+            <c:choose>
+                <c:when test="${trigger != true}">
+                    <a href="/admin/delete-authorities/" class="btn btn-primary">Delete authorities</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/admin/create/role" class="btn btn-primary">Delete authorities</a>
+                </c:otherwise>
+            </c:choose>
+
                 <c:if test="${trigger == true}">
                     <ul class="list-group">
                         <form:form method="POST" action="/admin/delete-authorities/" modelAttribute="authorityModel">

@@ -31,11 +31,7 @@ public class CustomUserDetailService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder encoder;
     private Optional<UserEntity> userOptional;
 
     @Override
@@ -63,46 +59,4 @@ public class CustomUserDetailService implements UserDetailsService {
         return new CustomUserDetails(userOptional.get(), authorities);
     }
 
-    public UserModel getById(Long id) {
-
-         userOptional = userRepository.findById(id);
-         if(userOptional.isPresent()) {
-             return new UserModel(userOptional.get());
-         }
-
-         return null; // dead end
-    }
-
-
-    public void createNewUser(UserModel usermodel) {
-
-        UserEntity newUser = new UserEntity(usermodel);
-
-        newUser.setPassword(encoder.encode(newUser.getPassword()));
-
-        this.userRepository.save(newUser);
-
-    }
-
-    public List<UserModel> getAllUsers() {
-
-        List<UserEntity> users = (List<UserEntity>) this.userRepository.findAll();
-
-        return users.stream().map(UserModel::new).collect(Collectors.toList());
-    }
-
-    public void giveRole(Long id, List<Long> ids) {
-        UserEntity user = null;
-        userOptional = userRepository.findById(id);
-        Iterable<RoleEntity> roles =  roleRepository.findAllById(ids);
-        Set<RoleEntity> rolesToSet = new HashSet<>();
-        roles.forEach(rolesToSet::add);
-
-        if(userOptional.isPresent()) {
-           user = userOptional.get();
-        }
-       user.setRoles(rolesToSet);
-
-        userRepository.save(user);
-    }
 }

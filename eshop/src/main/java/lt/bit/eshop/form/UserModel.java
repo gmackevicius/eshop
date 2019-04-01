@@ -2,6 +2,8 @@ package lt.bit.eshop.form;
 
 import lt.bit.eshop.entity.RoleEntity;
 import lt.bit.eshop.entity.UserEntity;
+import lt.bit.eshop.validation.ExistUsername;
+import lt.bit.eshop.validation.PasswordMatches;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@PasswordMatches
 public class UserModel {
 
     private Long id;
@@ -18,11 +22,14 @@ public class UserModel {
     private String name;
 
     @NotBlank(message = "Username is required!")
+    @ExistUsername
     private String username;
 
     @NotBlank(message = "Password is required!")
-    @Size(min=6, max=10)
     private String password;
+
+    @NotBlank(message = "Enter matching password!")
+    private String matchPassword;
 
     private List<RoleModel> roles = new ArrayList<>();
 
@@ -74,5 +81,13 @@ public class UserModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMatchPassword() {
+        return matchPassword;
+    }
+
+    public void setMatchPassword(String matchPassword) {
+        this.matchPassword = matchPassword;
     }
 }
