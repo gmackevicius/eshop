@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -7,14 +8,16 @@
 </head>
 <body>
 
+    <security:authorize access="hasRole('ADMIN')">
+        <nav>
+            <a href="/admin/product-list" class="btn btn-primary btn-lg active">Product list</a>
+            <a href="/admin/create/products" class="btn btn-primary btn-lg active">Create products</a>
+            <a href="/admin/create/category" class="btn btn-primary btn-lg active">Create category</a>
+            <a href="/admin/user-list" class="btn btn-primary btn-lg active">User list</a>
+            <a href="/admin/create/role" class="btn btn-primary btn-lg active">Create roles and authorities</a>
+        </nav>
+    </security:authorize>
 
-    <nav>
-        <a href="/admin/product-list" class="btn btn-primary btn-lg active">Product list</a>
-        <a href="/admin/create/products" class="btn btn-primary btn-lg active">Create products</a>
-        <a href="/admin/create/category" class="btn btn-primary btn-lg active">Create category</a>
-        <a href="/admin/user-list" class="btn btn-primary btn-lg active">User list</a>
-        <a href="/admin/create/role" class="btn btn-primary btn-lg active">Create roles and authorities</a>
-    </nav>
     <h1>Products</h1>
     <div class="jumbotron">
         Eshop application

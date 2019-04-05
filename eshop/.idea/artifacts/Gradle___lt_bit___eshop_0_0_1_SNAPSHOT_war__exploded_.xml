@@ -19,6 +19,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-data-jpa:2.1.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-web:2.1.3.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-security:2.1.3.RELEASE" />
           <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Gradle: org.apache.tomcat.embed:tomcat-embed-jasper:9.0.16" />
           <element id="library" level="project" name="Gradle: org.webjars:bootstrap:4.3.1" />
@@ -34,14 +35,17 @@
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter:2.1.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.hibernate.validator:hibernate-validator:6.0.14.Final" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:5.1.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-web:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:5.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-autoconfigure:2.1.3.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot:2.1.3.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:5.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-aop:5.1.5.RELEASE" />
           <element id="library" level="project" name="Gradle: org.eclipse.jdt:ecj:3.15.0" />
           <element id="library" level="project" name="Gradle: org.webjars:jquery:3.0.0" />
           <element id="library" level="project" name="Gradle: org.webjars:popper.js:1.14.3" />
-          <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-autoconfigure:2.1.3.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot:2.1.3.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.springframework:spring-context:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.springframework:spring-aop:5.1.5.RELEASE" />
           <element id="library" level="project" name="Gradle: org.aspectj:aspectjweaver:1.9.2" />
           <element id="library" level="project" name="Gradle: com.zaxxer:HikariCP:3.2.0" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-orm:5.1.5.RELEASE" />
@@ -69,18 +73,16 @@
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.8" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.8" />
-          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.9.8" />
           <element id="library" level="project" name="Gradle: org.yaml:snakeyaml:1.23" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.9.8" />
           <element id="library" level="project" name="Gradle: javax.validation:validation-api:2.0.1.Final" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-jcl:5.1.5.RELEASE" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.8" />
           <element id="library" level="project" name="Gradle: ch.qos.logback:logback-core:1.2.3" />
           <element id="library" level="project" name="Gradle: org.apache.logging.log4j:log4j-api:2.11.2" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-security/2.1.3.RELEASE/17eac91bb345a5236a3516f71b0b66e792b54170/spring-boot-starter-security-2.1.3.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.1.4.RELEASE/fc4d93db3b56e8a6ca11f4484a8bb6d328e7accb/spring-security-web-5.1.4.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/5.1.4.RELEASE/91c92c36df49cedfd5ba139c038c17c506190266/spring-security-config-5.1.4.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.4.RELEASE/5095b422dae31f091bf8eedf7bf46862bfa31876/spring-security-core-5.1.4.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-taglibs/5.1.5.RELEASE/bad7b5a95166bbb1793b0cdd889d85164540601a/spring-security-taglibs-5.1.5.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-acl/5.1.4.RELEASE/3e43f566fa541ee2d317e419e62ab2ceff5d466/spring-security-acl-5.1.4.RELEASE.jar" />
         </element>
       </element>
     </root>
