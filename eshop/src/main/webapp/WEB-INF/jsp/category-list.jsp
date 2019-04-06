@@ -108,6 +108,7 @@
                         <th style="width:25%" scope="col">Title</th>
                         <th style="width:55%" scope="col">Description</th>
                         <th style="width:10%" scope="col">Price</th>
+                        <th style="width:10%" scope="col"></th>
 
                     </thead>
                     <tbody>
@@ -116,6 +117,7 @@
                         <td>${product.getName()}</td>
                         <td>${product.getDescription()}</td>
                         <td>${product.getPrice()}</td>
+                        <td><a href="${"/cart/buy/" + product.getId()}" class="btn btn-primary">Buy Now</a></td>
 
                     </tr>
                     </tbody>
