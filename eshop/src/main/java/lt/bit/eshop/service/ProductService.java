@@ -39,6 +39,7 @@ public class ProductService {
         productEntity.setName(productModel.getName());
         productEntity.setDescription(productModel.getDescription());
         productEntity.setPrice(productModel.getPrice());
+        productEntity.setQuantity(productModel.getQuantity());
 
         Optional<CategoryEntity> categoryEnt = categoryRepository.findById(productModel.getCategoryId());
 
@@ -82,6 +83,7 @@ public class ProductService {
         productEntity.setName(model.getName());
         productEntity.setDescription(model.getDescription());
         productEntity.setPrice(model.getPrice());
+        productEntity.setQuantity(model.getQuantity());
 
         Optional<CategoryEntity> categoryEnt = categoryRepository.findById(model.getCategoryId());
 

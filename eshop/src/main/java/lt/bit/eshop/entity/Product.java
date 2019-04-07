@@ -20,6 +20,8 @@ public class Product {
 
     private double price;
 
+    private int quantity;
+
     public Long getId() {
         return id;
     }
@@ -58,5 +60,13 @@ public class Product {
 
     public CategoryEntity getCategory() {
         return category;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

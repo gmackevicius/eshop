@@ -24,6 +24,8 @@ public class ProductModel {
     @NotNull(message="Category is required!")
     private Long categoryId;
     private String categoryName;
+    @NotBlank
+    private int quantity;
 
 
     public ProductModel(Product product) {
@@ -33,7 +35,7 @@ public class ProductModel {
         this.setPrice(product.getPrice());
         this.setCategoryId(product.getCategory().getId());
         this.setCategoryName(product.getCategory().getName());
-
+        this.setQuantity(product.getQuantity());
     }
 
     public ProductModel() {
@@ -86,5 +88,13 @@ public class ProductModel {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

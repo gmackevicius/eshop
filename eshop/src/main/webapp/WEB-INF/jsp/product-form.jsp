@@ -34,6 +34,11 @@
                 </form:select>
                 <form:errors path="categoryId" cssStyle="color: red" />
             </div>
+            <div class="form-group">
+                <label for="price">Product quantity</label>
+                <form:input path="quantity" cssClass="form-control" />
+                <form:errors path="quantity" cssStyle="color: red" />
+            </div>
             <form:button class="btn btn-primary">Create</form:button>
         </form:form>
     </div>

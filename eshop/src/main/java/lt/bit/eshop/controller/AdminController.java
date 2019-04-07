@@ -72,7 +72,7 @@ public class AdminController {
 
         model.addAttribute("productList", productService.getProducts("id-DESC"));
 
-        return "product-list";
+        return "redirect:/admin/product-list";
     }
 
     @RequestMapping("/create/category")

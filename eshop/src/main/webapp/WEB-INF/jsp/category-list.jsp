@@ -117,7 +117,7 @@
                         <td>${product.getName()}</td>
                         <td>${product.getDescription()}</td>
                         <td>${product.getPrice()}</td>
-                        <td><a href="${"/cart/buy/" + product.getId()}" class="btn btn-primary">Buy Now</a></td>
+                        <td><a href="/cart/buy/ + ${product.getId()}" class="btn btn-primary">Buy Now</a></td>
 
                     </tr>
                     </tbody>

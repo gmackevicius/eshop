@@ -21,6 +21,7 @@
                             <th scope="col">Description</th>
                             <th scope="col">Price</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Select</th>
                             <th scope="col">Edit</th>
                         </tr>
@@ -32,6 +33,7 @@
                             <td>${product.getDescription()}</td>
                             <td>${product.getPrice()}</td>
                             <td>${product.getCategoryName()}</td>
+                            <td>${product.getQuantity()}</td>
                             <td><div class="form-check">
                                 <form:checkbox path="id" cssClass="form-check-input" value="${product.getId()}"/>
                             </div></td>
