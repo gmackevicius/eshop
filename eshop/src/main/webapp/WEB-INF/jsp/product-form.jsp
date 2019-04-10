@@ -39,6 +39,10 @@
                 <form:input path="quantity" cssClass="form-control" />
                 <form:errors path="quantity" cssStyle="color: red" />
             </div>
+            <div class="form-group">
+                <label for="productImage">Product image</label>
+                <input type="file" name="productImage" id="productImage" />
+            </div>
             <form:button class="btn btn-primary">Create</form:button>
         </form:form>
     </div>
