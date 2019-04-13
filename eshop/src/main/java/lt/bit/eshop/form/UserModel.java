@@ -33,11 +33,14 @@ public class UserModel {
 
     private List<RoleModel> roles = new ArrayList<>();
 
+    private CartModel shoppingCart;
+
     public UserModel(UserEntity entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.username = entity.getUsername();
         this.roles = entity.getRoles().stream().map(RoleModel::new).collect(Collectors.toList());
+        this.shoppingCart = new CartModel(entity.getCart());
     }
 
     public UserModel() {

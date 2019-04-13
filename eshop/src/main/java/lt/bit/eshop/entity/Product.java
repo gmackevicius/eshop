@@ -22,6 +22,8 @@ public class Product {
 
     private int quantity;
 
+    private String imageName;
+
     public Long getId() {
         return id;
     }
@@ -69,4 +71,13 @@ public class Product {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
 }

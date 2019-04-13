@@ -5,6 +5,7 @@ import lt.bit.eshop.entity.RoleEntity;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RoleModel {
@@ -14,7 +15,7 @@ public class RoleModel {
     @NotBlank(message="Name is required!")
     private String name;
 
-    private List<AuthorityModel> authorities;
+    private Set<AuthorityModel> authorities;
 
     public RoleModel(String name) {
         this.name = name;
@@ -23,7 +24,7 @@ public class RoleModel {
     public RoleModel(RoleEntity entity) {
         this.id = entity.getId();
         this.name = entity.getName();
-        this.authorities = entity.getAuthorities().stream().map(AuthorityModel::new).collect(Collectors.toList());
+        this.authorities = entity.getAuthorities().stream().map(AuthorityModel::new).collect(Collectors.toSet());
     }
 
     public RoleModel() {
@@ -45,11 +46,11 @@ public class RoleModel {
         this.name = name;
     }
 
-    public List<AuthorityModel> getAuthorities() {
+    public Set<AuthorityModel> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(List<AuthorityModel> authorities) {
+    public void setAuthorities(Set<AuthorityModel> authorities) {
         this.authorities = authorities;
     }
 

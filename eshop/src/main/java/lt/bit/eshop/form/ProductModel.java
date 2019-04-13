@@ -24,8 +24,10 @@ public class ProductModel {
     @NotNull(message="Category is required!")
     private Long categoryId;
     private String categoryName;
-    @NotBlank
+    @NotNull
     private int quantity;
+
+    private String imageName;
 
 
     public ProductModel(Product product) {
@@ -36,6 +38,7 @@ public class ProductModel {
         this.setCategoryId(product.getCategory().getId());
         this.setCategoryName(product.getCategory().getName());
         this.setQuantity(product.getQuantity());
+        this.setImageName(product.getImageName());
     }
 
     public ProductModel() {
@@ -81,7 +84,6 @@ public class ProductModel {
         this.categoryId = categoryId;
     }
 
-
     public String getCategoryName() {
         return categoryName;
     }
@@ -96,5 +98,13 @@ public class ProductModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }

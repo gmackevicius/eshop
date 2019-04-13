@@ -15,6 +15,10 @@ public class ExistUsernameValidator implements ConstraintValidator<ExistUsername
    }
 
    public boolean isValid(String username, ConstraintValidatorContext context) {
-      return !userService.getUserByUsername(username).isPresent();
+      if(userService.getUserByUsername(username) != null) {
+         return true;
+      } else {
+         return false;
+      }
    }
 }

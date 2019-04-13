@@ -45,8 +45,8 @@ public class FileStorageService {
         }
     }
 
-    public void store(MultipartFile file) throws StorageException, FileFormatException {
-        this.store(file, file.getOriginalFilename().split(".")[0]);
+    public String store(MultipartFile file) throws StorageException, FileFormatException {
+       return this.store(file, file.getOriginalFilename());
     }
 
     public String store(MultipartFile file, String fileName) throws StorageException, FileFormatException {

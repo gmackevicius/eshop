@@ -1,14 +1,20 @@
 package lt.bit.eshop.service;
 
+import lt.bit.eshop.config.CustomUserDetails;
+import lt.bit.eshop.entity.CartEntity;
+import lt.bit.eshop.entity.CartItem;
 import lt.bit.eshop.entity.RoleEntity;
 import lt.bit.eshop.entity.UserEntity;
 import lt.bit.eshop.form.UserModel;
 import lt.bit.eshop.repository.RoleRepository;
 import lt.bit.eshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +34,7 @@ public class UserService {
     private PasswordEncoder encoder;
 
     private Optional<UserEntity> userOptional;
+
 
     public UserModel getById(Long id) {
 
@@ -72,7 +79,24 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<UserEntity> getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public UserEntity getUserByUsername(String username) { // ar reikia iskart verst i model?
+        UserEntity user;
+        if(username != "anonymousUser") {
+            user = userRepository.findByUsername(username).get();
+            return user;
+        } else {
+            UserEntity anonymousUser = new UserEntity();
+            anonymousUser.setUsername("anonymousUser");
+            return anonymousUser;
+        }
+
     }
+
+    public String getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        return authentication.getName();
+    }
+
+
 }

@@ -11,9 +11,22 @@
 <head>
     <title>Category list</title>
     <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-11">
+        </div>
+        <div class="col-1">
+            <c:if test="${shoppingCart.getCartItems() != null}">
+                <span style="color: darkred; font-weight: bold; font-size: 30px;">${shoppingCart.getCartItems().size()}</span>
+            </c:if>
+            <a href="cart"><i class="fas fa-shopping-cart" style="font-size: 32px;"></i></a>
+        </div>
+    </div>
+    <br>
     <div class="row">
         <div class="col-2">
             <ul class="list-group">
@@ -117,8 +130,9 @@
                         <td>${product.getName()}</td>
                         <td>${product.getDescription()}</td>
                         <td>${product.getPrice()}</td>
-                        <td><a href="/cart/buy/ + ${product.getId()}" class="btn btn-primary">Buy Now</a></td>
-
+                        <form:form method="POST" modelAttribute="productModel" action="/category-list/buy">
+                        <td><form:button name="id" value="${product.getId()}" class="btn btn-primary">Buy</form:button></td>
+                        </form:form>
                     </tr>
                     </tbody>
                 </table>

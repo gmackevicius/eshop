@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,10 +24,10 @@ public class AuthorityService {
         authorityRepository.save(entity);
     }
 
-    public List<AuthorityModel> getAllAuthorities() {
-        List<Authority> roles = (List<Authority>) authorityRepository.findAll();
+    public Set<AuthorityModel> getAllAuthorities() {
+        Set<Authority> roles = (Set<Authority>) authorityRepository.findAll();
 
-        return roles.stream().map(AuthorityModel::new).collect(Collectors.toList());
+        return roles.stream().map(AuthorityModel::new).collect(Collectors.toSet());
     }
     public void deleteAuthority(List<Long> id) {
         for(Long i : id)

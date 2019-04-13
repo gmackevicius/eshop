@@ -1,10 +1,12 @@
 package lt.bit.eshop.controller;
 
 import lt.bit.eshop.entity.CategoryEntity;
+import lt.bit.eshop.form.CartModel;
 import lt.bit.eshop.form.FilterModel;
 import lt.bit.eshop.form.ProductModel;
 import lt.bit.eshop.service.CategoryService;
 import lt.bit.eshop.service.ProductService;
+import lt.bit.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +23,22 @@ public class ProductsController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/category-list/{sort}")
     public String index(Model model, @PathVariable String sort, @ModelAttribute FilterModel filterModel) {
 
         model.addAttribute("categoryList", categoryService.getCategories());
         model.addAttribute("filterModel", filterModel);
+        model.addAttribute("productModel", new ProductModel());
         model.addAttribute("productList", productService.getProducts(sort, filterModel.getName()));
+        if(userService.getCurrentUser() != "anonymousUser") {
+            model.addAttribute("shoppingCart", new CartModel(userService.getUserByUsername(userService.getCurrentUser()).getCart()));
+        }
+        else {
+            model.addAttribute("shoppingCart", new CartModel());
+        }
 
         return "category-list";
     }
@@ -35,6 +47,7 @@ public class ProductsController {
     public String products(@PathVariable String categorySlug, Model model, @PathVariable String sort, @ModelAttribute FilterModel filterModel){
 
         model.addAttribute("filterModel", filterModel);
+        model.addAttribute("productModel", new ProductModel());
         CategoryEntity categoryEntity = categoryService.findCategory(categorySlug);
         model.addAttribute("categoryList", categoryService.getCategories());
         model.addAttribute("productList", productService.getProductsByCategory(categoryEntity, sort, filterModel.getName()));

@@ -1,17 +1,24 @@
 package lt.bit.eshop.controller;
 
 
+import lt.bit.eshop.entity.Product;
 import lt.bit.eshop.form.*;
 import lt.bit.eshop.service.*;
+import lt.bit.eshop.validation.exceptions.FileFormatException;
+import lt.bit.eshop.validation.exceptions.ProductNotFound;
+import lt.bit.eshop.validation.exceptions.StorageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -33,6 +40,9 @@ public class AdminController {
     @Autowired
     private AuthorityService authorityService;
 
+    @Autowired
+    private FileStorageService storageService;
+
     @RequestMapping("/create/products")
     public String productForm(Model model) {
         model.addAttribute("productModel", new ProductModel());
@@ -41,12 +51,16 @@ public class AdminController {
     }
 
     @RequestMapping( value = "/create/products", method = RequestMethod.POST)
-    public String createProduct(@Valid @ModelAttribute ProductModel productModel, BindingResult bindingResult, Model model) {
+    public String createProduct(@Valid @ModelAttribute ProductModel productModel, BindingResult bindingResult, Model model, MultipartFile file) throws FileFormatException, StorageException, ProductNotFound {
 
 
         if(!bindingResult.hasErrors()) {
-            productService.createProduct(productModel);
+            Product product =  productService.createProduct(productModel);
             model.addAttribute("productModel", new ProductModel());
+
+            String imageName = storageService.store(file, productService.constructImageName(product.getId()));
+
+            productService.attachImage(product.getId(), imageName);
 
             model.addAttribute("productList", productService.getProducts("id-DESC"));
             return "product-list";
@@ -246,10 +260,10 @@ public class AdminController {
     @RequestMapping(value = "/give-authorities/{id}")
     public String triggerAuthSelection(@PathVariable Long id, @ModelAttribute AuthorityModel authorityModel, @ModelAttribute RoleModel roleModel, Model model) {
 
-        List<AuthorityModel> allAuthorities = authorityService.getAllAuthorities();
-        List<AuthorityModel> roleAuthorities = roleService.getById(id).getAuthorities();
-        List<AuthorityModel> roleOwnedAuthorities = new ArrayList<>();
-        List<AuthorityModel> nonOwnedAuthorities = new ArrayList<>();
+        Set<AuthorityModel> allAuthorities = authorityService.getAllAuthorities();
+        Set<AuthorityModel> roleAuthorities = roleService.getById(id).getAuthorities();
+        Set<AuthorityModel> roleOwnedAuthorities = new HashSet<>();
+        Set<AuthorityModel> nonOwnedAuthorities = new HashSet<>();
 
         for(AuthorityModel a: allAuthorities) {
             if(roleAuthorities.contains(a)) {

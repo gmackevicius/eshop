@@ -26,6 +26,9 @@ public class UserEntity {
     @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<RoleEntity> roles;
 
+    @OneToOne
+    private CartEntity cart;
+
 
     public UserEntity(UserModel userModel) {
         this.name = userModel.getName();
@@ -88,5 +91,13 @@ public class UserEntity {
 
     public void setRoles(Set<RoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public CartEntity getCart() {
+        return cart;
+    }
+
+    public void setCart(CartEntity cart) {
+        this.cart = cart;
     }
 }

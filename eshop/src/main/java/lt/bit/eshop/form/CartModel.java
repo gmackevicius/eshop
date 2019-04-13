@@ -1,42 +1,50 @@
 package lt.bit.eshop.form;
 
+import lt.bit.eshop.entity.CartEntity;
+
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CartModel {
 
-    private List<ProductModel> cart;
+    private Set<CartItemModel> cartItems;
 
-    private double sum;
-
-    public CartModel(List<ProductModel> cart) {
-        this.cart = cart;
-        int tempSum = 0;
-        for(ProductModel p : cart) {
-            tempSum += (p.getQuantity() * p.getPrice());
-        }
-        this.sum = tempSum;
+    public CartModel(CartEntity cartEntity) {
+       this.cartItems =  cartEntity.getCartItems().stream().map(CartItemModel::new).collect(Collectors.toSet());
     }
 
     public CartModel() {
     }
 
-    public List<ProductModel> getCart() {
-        return cart;
+    public Set<CartItemModel> getCartItems() {
+        return cartItems;
     }
 
-    public void setCart(List<ProductModel> cart) {
-        this.cart = cart;
+    public void setCartItems(Set<CartItemModel> cartItems) {
+        this.cartItems = cartItems;
     }
 
-    public double getSum() {
-        return sum;
-    }
+    //    public double getSum() {
+//        return sum;
+//    }
+//
+//    public void setSum(double sum) {
+//        int tempSum = 0;
+//        for(ProductModel p : cart) {
+//            tempSum += (p.getQuantity() * p.getPrice());
+//        }
+//        this.sum = tempSum;
+//    }
 
-    public void setSum(double sum) {
-        int tempSum = 0;
-        for(ProductModel p : cart) {
-            tempSum += (p.getQuantity() * p.getPrice());
-        }
-        this.sum = tempSum;
-    }
+    //    private double sum;
+//
+//    public CartModel(List<ProductModel> cart) {
+//        this.cart = cart;
+//        int tempSum = 0;
+//        for(ProductModel p : cart) {
+//            tempSum += (p.getQuantity() * p.getPrice());
+//        }
+//        this.sum = tempSum;
+//    }
 }

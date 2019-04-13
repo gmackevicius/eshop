@@ -7,6 +7,7 @@ import lt.bit.eshop.form.CategoryModel;
 import lt.bit.eshop.form.ProductModel;
 import lt.bit.eshop.repository.CategoryRepository;
 import lt.bit.eshop.repository.ProductRepository;
+import lt.bit.eshop.validation.exceptions.ProductNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Sort;
@@ -32,7 +33,7 @@ public class ProductService {
     @Autowired
     private CategoryService categoryService;
 
-    public void createProduct(ProductModel productModel){
+    public Product createProduct(ProductModel productModel){
 
         Product productEntity = new Product();
 
@@ -48,7 +49,30 @@ public class ProductService {
 
         productEntity.setCategory(categoryEntity);
 
-        productRepository.save(productEntity);
+       return productRepository.save(productEntity);
+    }
+
+    public String constructImageName(Long id) {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("product_");
+        builder.append(id.toString());
+
+        return builder.toString();
+    }
+
+    public void attachImage(Long productId, String imageName) throws ProductNotFound {
+        Optional<Product> optional = this.productRepository.findById(productId);
+
+        if (!optional.isPresent()) {
+            throw new ProductNotFound("Product " + productId + " not found");
+        }
+
+        Product product = optional.get();
+
+        product.setImageName(imageName);
+
+        this.productRepository.save(product);
     }
 
     public ProductModel getById(Long id) {
