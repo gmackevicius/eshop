@@ -34,7 +34,11 @@ public class ProductsController {
         model.addAttribute("productModel", new ProductModel());
         model.addAttribute("productList", productService.getProducts(sort, filterModel.getName()));
         if(userService.getCurrentUser() != "anonymousUser") {
-            model.addAttribute("shoppingCart", new CartModel(userService.getUserByUsername(userService.getCurrentUser()).getCart()));
+            if(userService.getUserByUsername(userService.getCurrentUser()).getCart() != null) {
+                model.addAttribute("shoppingCart", new CartModel(userService.getUserByUsername(userService.getCurrentUser()).getCart()));
+            } else {
+                model.addAttribute("shoppingCart", new CartModel());
+            }
         }
         else {
             model.addAttribute("shoppingCart", new CartModel());
@@ -51,8 +55,17 @@ public class ProductsController {
         CategoryEntity categoryEntity = categoryService.findCategory(categorySlug);
         model.addAttribute("categoryList", categoryService.getCategories());
         model.addAttribute("productList", productService.getProductsByCategory(categoryEntity, sort, filterModel.getName()));
-
         model.addAttribute("slug", categorySlug);
+        if(userService.getCurrentUser() != "anonymousUser") {
+            if(userService.getUserByUsername(userService.getCurrentUser()).getCart() != null) {
+                model.addAttribute("shoppingCart", new CartModel(userService.getUserByUsername(userService.getCurrentUser()).getCart()));
+            } else {
+                model.addAttribute("shoppingCart", new CartModel());
+            }
+        }
+        else {
+            model.addAttribute("shoppingCart", new CartModel());
+        }
 
         return "category-list";
     }

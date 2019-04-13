@@ -10,8 +10,11 @@ public class CartModel {
 
     private Set<CartItemModel> cartItems;
 
+//    private int cartQuantity;
+
     public CartModel(CartEntity cartEntity) {
        this.cartItems =  cartEntity.getCartItems().stream().map(CartItemModel::new).collect(Collectors.toSet());
+//       this.cartQuantity = cartEntity.getCartQuantity();
     }
 
     public CartModel() {
@@ -25,26 +28,18 @@ public class CartModel {
         this.cartItems = cartItems;
     }
 
-    //    public double getSum() {
-//        return sum;
+//    public int getCartQuantity() {
+//        if(cartItems != null) {
+//        for(CartItemModel c : cartItems) {
+//            cartQuantity += c.getQuantity();
+//        }
+//        } else {
+//            cartQuantity = 0;
+//        }
+//        return cartQuantity;
 //    }
 //
-//    public void setSum(double sum) {
-//        int tempSum = 0;
-//        for(ProductModel p : cart) {
-//            tempSum += (p.getQuantity() * p.getPrice());
-//        }
-//        this.sum = tempSum;
-//    }
-
-    //    private double sum;
-//
-//    public CartModel(List<ProductModel> cart) {
-//        this.cart = cart;
-//        int tempSum = 0;
-//        for(ProductModel p : cart) {
-//            tempSum += (p.getQuantity() * p.getPrice());
-//        }
-//        this.sum = tempSum;
+//    public void setCartQuantity(int cartQuantity) {
+//        this.cartQuantity = cartQuantity;
 //    }
 }

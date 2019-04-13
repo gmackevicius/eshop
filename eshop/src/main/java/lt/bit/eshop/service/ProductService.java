@@ -75,7 +75,7 @@ public class ProductService {
         this.productRepository.save(product);
     }
 
-    public ProductModel getById(Long id) {
+    public Product getById(Long id) {
 
         Product productEntity = null;
         Optional<Product> product =  productRepository.findById(id);
@@ -83,7 +83,7 @@ public class ProductService {
            productEntity = product.get();
         }
 
-        return new ProductModel(productEntity);
+        return productEntity;
     }
 
     public List<ProductModel> getByName(String name) {

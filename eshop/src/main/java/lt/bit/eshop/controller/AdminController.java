@@ -73,7 +73,7 @@ public class AdminController {
     public String editProductForm(@PathVariable Long id, Model model) {
 
         model.addAttribute("categoryList", categoryService.getCategories());
-        ProductModel pm = productService.getById(id);
+        ProductModel pm = new ProductModel(productService.getById(id));
         model.addAttribute("productModel", pm );
 
         return "product-form";

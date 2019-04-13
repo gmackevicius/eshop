@@ -57,7 +57,7 @@
                 <li class="list-group-item">
                     <c:choose>
                         <c:when test="${slug.length() > 0}">
-                            <a href="/${slug}/price-ASC">
+                            <a href="/category-list/${slug}/price-ASC">
                                 price from lowest
                             </a>
                         </c:when>
@@ -71,7 +71,7 @@
                 <li class="list-group-item">
                     <c:choose>
                         <c:when test="${slug.length() > 0}">
-                            <a href="/${slug}/price-DESC">
+                            <a href="/category-list/${slug}/price-DESC">
                                 price from highest
                             </a>
                         </c:when>
@@ -85,7 +85,7 @@
                 <li class="list-group-item">
                     <c:choose>
                         <c:when test="${slug.length() > 0}">
-                            <a href="/${slug}/name-ASC">
+                            <a href="/category-list/${slug}/name-ASC">
                                name
                             </a>
                         </c:when>
