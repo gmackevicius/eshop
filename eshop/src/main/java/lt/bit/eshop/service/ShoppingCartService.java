@@ -27,11 +27,10 @@ public class ShoppingCartService {
     private ProductService productService;
     @Autowired
     private UserService userService;
-
+    private boolean quantityUpdated;
 
     public void buy(Long id) {
         UserEntity user = userService.getCurrentUser();
-        boolean quantityUpdated = false;
 
 
         if (user.getCart().getCartItems().size() != 0) {
@@ -41,9 +40,12 @@ public class ShoppingCartService {
                     cartItemRepository.save(c);
                     quantityUpdated = true;
                     break;
+                } else {
+                    quantityUpdated = false;
                 }
             }
-        } else if(user.getCart().getCartItems().size() == 0 || quantityUpdated == false) {
+        }
+        if(user.getCart().getCartItems().size() == 0 || quantityUpdated == false) {
             CartEntity cart = user.getCart();
 
             CartItem cartItem = new CartItem(productService.getById(id), 1);

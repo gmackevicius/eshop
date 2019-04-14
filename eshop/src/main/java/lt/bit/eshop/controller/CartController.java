@@ -36,7 +36,7 @@ public class CartController {
 
 
     @RequestMapping(value="/category-list/buy",  method = RequestMethod.POST)
-    public String buy(@RequestParam Long id, Model model){
+    public String buy(@RequestParam Long id){
 
         cartService.buy(id);
 

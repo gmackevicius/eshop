@@ -17,7 +17,15 @@ public class CartModel {
         } else {
             this.cartItems = new HashSet<>();
         }
+    }
 
+    public int getTotalQuantity() {
+        int totalQuantity = 0;
+        for(CartItemModel c : this.cartItems){
+            totalQuantity += c.getQuantity();
+        }
+
+        return totalQuantity;
     }
 
     public CartModel() {

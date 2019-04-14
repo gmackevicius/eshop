@@ -20,9 +20,9 @@
         <div class="col-11">
         </div>
         <div class="col-1">
-            <c:if test="${shoppingCart.getCartItems() != null}">
-                <span style="color: darkred; font-weight: bold; font-size: 30px;">${shoppingCart.getCartItems().size()}</span>
-            </c:if>
+            <%--<c:if test="${shoppingCart.getCartItems() != null}">--%>
+                <span style="color: darkred; font-weight: bold; font-size: 30px;">${shoppingCart.getTotalQuantity()}</span>
+            <%--</c:if>--%>
             <a href="cart"><i class="fas fa-shopping-cart" style="font-size: 32px;"></i></a>
         </div>
     </div>
