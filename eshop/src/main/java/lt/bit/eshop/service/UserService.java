@@ -6,9 +6,11 @@ import lt.bit.eshop.entity.CartItem;
 import lt.bit.eshop.entity.RoleEntity;
 import lt.bit.eshop.entity.UserEntity;
 import lt.bit.eshop.form.UserModel;
+import lt.bit.eshop.repository.CartRepository;
 import lt.bit.eshop.repository.RoleRepository;
 import lt.bit.eshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,6 +33,9 @@ public class UserService {
     private RoleRepository roleRepository;
 
     @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
     private PasswordEncoder encoder;
 
     private Optional<UserEntity> userOptional;
@@ -51,10 +56,16 @@ public class UserService {
 
         UserEntity newUser = new UserEntity(usermodel);
 
+        CartEntity cart = new CartEntity();
+        Set<CartItem> emptyCart = new HashSet<>();
+        cart.setCartItems(emptyCart);
+        cartRepository.save(cart);
+
+        newUser.setCart(cart);
+
         newUser.setPassword(encoder.encode(newUser.getPassword()));
 
         this.userRepository.save(newUser);
-
     }
 
     public List<UserModel> getAllUsers() {
@@ -79,23 +90,35 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public UserEntity getUserByUsername(String username) { // ar reikia iskart verst i model?
-        UserEntity user;
-        if(username != "anonymousUser") {
+    public UserEntity getUserByUsername(String username) {
+        UserEntity user = null;
+        if(userRepository.findByUsername(username).isPresent()) {
             user = userRepository.findByUsername(username).get();
+        }
             return user;
+    }
+
+    public UserEntity getCurrentUser() {
+
+        Authentication user = SecurityContextHolder.getContext().getAuthentication();
+        UserEntity userToReturn = null;
+
+        if(!(user instanceof AnonymousAuthenticationToken)) {
+            if(userRepository.findByUsername(user.getName()).isPresent()){
+                userToReturn = userRepository.findByUsername(user.getName()).get();
+            }
         } else {
             UserEntity anonymousUser = new UserEntity();
             anonymousUser.setUsername("anonymousUser");
-            return anonymousUser;
+            anonymousUser.setCart(new CartEntity());
+            userToReturn = anonymousUser;
         }
 
+        return userToReturn;
     }
 
-    public String getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        return authentication.getName();
+    public void saveUser(UserEntity user) {
+        userRepository.save(user);
     }
 
 

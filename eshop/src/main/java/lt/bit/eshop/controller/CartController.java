@@ -1,7 +1,9 @@
 package lt.bit.eshop.controller;
 
 
+import lt.bit.eshop.entity.UserEntity;
 import lt.bit.eshop.form.CartModel;
+import lt.bit.eshop.form.UserModel;
 import lt.bit.eshop.service.ShoppingCartService;
 import lt.bit.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +18,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CartController {
 
     @Autowired
-    ShoppingCartService cartService;
+    private ShoppingCartService cartService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
+
+
+    @RequestMapping("/shopping-cart")
+    public String index(Model model) {
+
+        model.addAttribute("shoppingCart", cartService.getUserCart());
+
+
+        return "shopping-cart";
+    }
 
 
     @RequestMapping(value="/category-list/buy",  method = RequestMethod.POST)
     public String buy(@RequestParam Long id, Model model){
 
-        if(userService.getCurrentUser() != "anonymousUser") {
-            model.addAttribute("shoppingCart", cartService.buy(id, userService.getUserByUsername(userService.getCurrentUser())));
-        } else {
-            model.addAttribute("shoppingCart", cartService.buy(id, null));
-        }
-
-
+        cartService.buy(id);
 
         return "redirect:/category-list/id-DESC";
     }
+
 }

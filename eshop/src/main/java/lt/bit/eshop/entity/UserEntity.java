@@ -36,12 +36,6 @@ public class UserEntity {
         this.password = userModel.getPassword();
     }
 
-    public UserEntity(String name, String username, String password) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
-    }
-
     public UserEntity() {
     }
 

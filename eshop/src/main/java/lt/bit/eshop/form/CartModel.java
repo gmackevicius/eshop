@@ -2,6 +2,7 @@ package lt.bit.eshop.form;
 
 import lt.bit.eshop.entity.CartEntity;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,11 +11,13 @@ public class CartModel {
 
     private Set<CartItemModel> cartItems;
 
-//    private int cartQuantity;
-
     public CartModel(CartEntity cartEntity) {
-       this.cartItems =  cartEntity.getCartItems().stream().map(CartItemModel::new).collect(Collectors.toSet());
-//       this.cartQuantity = cartEntity.getCartQuantity();
+        if(cartEntity.getCartItems().size() > 0) {
+            this.cartItems = cartEntity.getCartItems().stream().map(CartItemModel::new).collect(Collectors.toSet());
+        } else {
+            this.cartItems = new HashSet<>();
+        }
+
     }
 
     public CartModel() {
@@ -28,18 +31,5 @@ public class CartModel {
         this.cartItems = cartItems;
     }
 
-//    public int getCartQuantity() {
-//        if(cartItems != null) {
-//        for(CartItemModel c : cartItems) {
-//            cartQuantity += c.getQuantity();
-//        }
-//        } else {
-//            cartQuantity = 0;
-//        }
-//        return cartQuantity;
-//    }
-//
-//    public void setCartQuantity(int cartQuantity) {
-//        this.cartQuantity = cartQuantity;
-//    }
+
 }

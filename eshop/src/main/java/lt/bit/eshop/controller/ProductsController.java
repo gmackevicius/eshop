@@ -1,11 +1,14 @@
 package lt.bit.eshop.controller;
 
 import lt.bit.eshop.entity.CategoryEntity;
+import lt.bit.eshop.entity.UserEntity;
 import lt.bit.eshop.form.CartModel;
 import lt.bit.eshop.form.FilterModel;
 import lt.bit.eshop.form.ProductModel;
+import lt.bit.eshop.form.UserModel;
 import lt.bit.eshop.service.CategoryService;
 import lt.bit.eshop.service.ProductService;
+import lt.bit.eshop.service.ShoppingCartService;
 import lt.bit.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +22,13 @@ public class ProductsController {
 
     @Autowired
     private ProductService productService;
-
     @Autowired
     private CategoryService categoryService;
-
     @Autowired
     private UserService userService;
+    @Autowired
+    private ShoppingCartService cartService;
+
 
     @GetMapping("/category-list/{sort}")
     public String index(Model model, @PathVariable String sort, @ModelAttribute FilterModel filterModel) {
@@ -32,17 +36,10 @@ public class ProductsController {
         model.addAttribute("categoryList", categoryService.getCategories());
         model.addAttribute("filterModel", filterModel);
         model.addAttribute("productModel", new ProductModel());
+        model.addAttribute("shoppingCart", new CartModel(cartService.getUserCart()));
         model.addAttribute("productList", productService.getProducts(sort, filterModel.getName()));
-        if(userService.getCurrentUser() != "anonymousUser") {
-            if(userService.getUserByUsername(userService.getCurrentUser()).getCart() != null) {
-                model.addAttribute("shoppingCart", new CartModel(userService.getUserByUsername(userService.getCurrentUser()).getCart()));
-            } else {
-                model.addAttribute("shoppingCart", new CartModel());
-            }
-        }
-        else {
-            model.addAttribute("shoppingCart", new CartModel());
-        }
+
+
 
         return "category-list";
     }
@@ -56,16 +53,7 @@ public class ProductsController {
         model.addAttribute("categoryList", categoryService.getCategories());
         model.addAttribute("productList", productService.getProductsByCategory(categoryEntity, sort, filterModel.getName()));
         model.addAttribute("slug", categorySlug);
-        if(userService.getCurrentUser() != "anonymousUser") {
-            if(userService.getUserByUsername(userService.getCurrentUser()).getCart() != null) {
-                model.addAttribute("shoppingCart", new CartModel(userService.getUserByUsername(userService.getCurrentUser()).getCart()));
-            } else {
-                model.addAttribute("shoppingCart", new CartModel());
-            }
-        }
-        else {
-            model.addAttribute("shoppingCart", new CartModel());
-        }
+        model.addAttribute("shoppingCart", new CartModel(cartService.getUserCart()));
 
         return "category-list";
     }

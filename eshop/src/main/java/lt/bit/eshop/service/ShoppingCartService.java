@@ -20,57 +20,60 @@ import java.util.Set;
 public class ShoppingCartService {
 
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
     @Autowired
-    UserRepository userRepository;
+    private CartItemRepository cartItemRepository;
     @Autowired
-    CartItemRepository cartItemRepository;
+    private ProductService productService;
     @Autowired
-    ProductService productService;
-    @Autowired
-    UserService userService;
+    private UserService userService;
 
-    public CartModel buy(Long id, UserEntity user) {
-        CartModel currentCart = null;
 
-        if(user != null) {
-            if(user.getCart() == null) {
-                CartEntity cart = new CartEntity();
-                CartItem cartItem = new CartItem(productService.getById(id), 1);
-                cartItemRepository.save(cartItem);
-                Set<CartItem> cartItems = new HashSet<>();
-                cartItems.add(cartItem);
-                cart.setCartItems(cartItems);
-                cartRepository.save(cart);
-                user.setCart(cart);
+    public void buy(Long id) {
+        UserEntity user = userService.getCurrentUser();
+        boolean quantityUpdated = false;
 
-                userRepository.save(user);
-            }
-            else {
-                for(CartItem c : user.getCart().getCartItems()) {
-                    if(c.getProduct().getId() == id) {
-                        c.setQuantity(c.getQuantity() + 1);
-                        cartItemRepository.save(c);
-                    } else {
-                        CartItem cartItem = new CartItem(productService.getById(id), 1);
-                        cartItemRepository.save(cartItem);
-                        CartEntity cart = user.getCart();
-                        cart.getCartItems().add(cartItem);
-                        cartRepository.save(cart);
-                        user.setCart(cart);
-                        userRepository.save(user);
-                    }
+
+        if (user.getCart().getCartItems().size() != 0) {
+            for (CartItem c : user.getCart().getCartItems()) {
+                if (c.getProduct().getId() == id) {
+                    c.setQuantity(c.getQuantity() + 1);
+                    cartItemRepository.save(c);
+                    quantityUpdated = true;
+                    break;
                 }
             }
-        } else {
-          currentCart = new CartModel();
-          CartItemModel cartItem = new CartItemModel();
-          cartItem.setProduct(new ProductModel(productService.getById(id)));
-          cartItem.setQuantity(1);
-          Set<CartItemModel> cart = new HashSet<>();
-          cart.add(cartItem);
-          currentCart.setCartItems(cart);
+        } else if(user.getCart().getCartItems().size() == 0 || quantityUpdated == false) {
+            CartEntity cart = user.getCart();
+
+            CartItem cartItem = new CartItem(productService.getById(id), 1);
+            cartItemRepository.save(cartItem);
+
+            cart.getCartItems().add(cartItem);
+            cartRepository.save(cart);
+
+            user.setCart(cart);
+
+            if(user.getId() != null) {
+                userService.saveUser(user);
+            }
         }
-        return currentCart;
+
+//
+//        else {
+//          currentCart = new CartModel();
+//          CartItemModel cartItem = new CartItemModel();
+//          cartItem.setProduct(new ProductModel(productService.getById(id)));
+//          cartItem.setQuantity(1);
+//          Set<CartItemModel> cart = new HashSet<>();
+//          cart.add(cartItem);
+//          currentCart.setCartItems(cart);
+//        }
+
+    }
+
+    public CartEntity getUserCart() { // paversiu i model controlleryje su constructor
+        UserEntity user = userService.getCurrentUser();
+        return user.getCart();
     }
 }
