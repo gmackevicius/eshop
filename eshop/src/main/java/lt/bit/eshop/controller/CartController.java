@@ -2,7 +2,9 @@ package lt.bit.eshop.controller;
 
 
 import lt.bit.eshop.entity.UserEntity;
+import lt.bit.eshop.form.CartItemModel;
 import lt.bit.eshop.form.CartModel;
+import lt.bit.eshop.form.ProductModel;
 import lt.bit.eshop.form.UserModel;
 import lt.bit.eshop.service.ShoppingCartService;
 import lt.bit.eshop.service.UserService;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.WebSession;
 
 @Controller
 //@RequestMapping("cart")
@@ -28,7 +31,8 @@ public class CartController {
     @RequestMapping("/shopping-cart")
     public String index(Model model) {
 
-        model.addAttribute("shoppingCart", cartService.getUserCart());
+        model.addAttribute("shoppingCart", new CartModel(cartService.getUserCart()));
+        model.addAttribute("cartItem", new CartItemModel());
 
 
         return "shopping-cart";

@@ -59,8 +59,6 @@ public class UserService {
         CartEntity cart = new CartEntity();
         Set<CartItem> emptyCart = new HashSet<>();
         cart.setCartItems(emptyCart);
-        cartRepository.save(cart);
-
         newUser.setCart(cart);
 
         newUser.setPassword(encoder.encode(newUser.getPassword()));
@@ -111,6 +109,7 @@ public class UserService {
             UserEntity anonymousUser = new UserEntity();
             anonymousUser.setUsername("anonymousUser");
             anonymousUser.setCart(new CartEntity());
+            anonymousUser.getCart().setCartItems(new HashSet<>());
             userToReturn = anonymousUser;
         }
 

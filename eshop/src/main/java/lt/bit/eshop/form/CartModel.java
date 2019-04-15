@@ -28,6 +28,15 @@ public class CartModel {
         return totalQuantity;
     }
 
+    public double getSum() {
+        double sum = 0;
+        for(CartItemModel c : this.cartItems){
+            sum += (c.getQuantity() * c.getProduct().getPrice());
+        }
+
+        return sum;
+    }
+
     public CartModel() {
     }
 

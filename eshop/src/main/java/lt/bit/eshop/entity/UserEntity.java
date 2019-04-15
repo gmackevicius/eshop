@@ -26,7 +26,7 @@ public class UserEntity {
     @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<RoleEntity> roles;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private CartEntity cart;
 
 

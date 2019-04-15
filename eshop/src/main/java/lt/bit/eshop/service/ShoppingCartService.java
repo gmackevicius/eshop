@@ -49,10 +49,10 @@ public class ShoppingCartService {
             CartEntity cart = user.getCart();
 
             CartItem cartItem = new CartItem(productService.getById(id), 1);
-            cartItemRepository.save(cartItem);
+//            cartItemRepository.save(cartItem);
 
             cart.getCartItems().add(cartItem);
-            cartRepository.save(cart);
+//            cartRepository.save(cart);
 
             user.setCart(cart);
 
@@ -61,20 +61,10 @@ public class ShoppingCartService {
             }
         }
 
-//
-//        else {
-//          currentCart = new CartModel();
-//          CartItemModel cartItem = new CartItemModel();
-//          cartItem.setProduct(new ProductModel(productService.getById(id)));
-//          cartItem.setQuantity(1);
-//          Set<CartItemModel> cart = new HashSet<>();
-//          cart.add(cartItem);
-//          currentCart.setCartItems(cart);
-//        }
 
     }
 
-    public CartEntity getUserCart() { // paversiu i model controlleryje su constructor
+    public CartEntity getUserCart() {
         UserEntity user = userService.getCurrentUser();
         return user.getCart();
     }

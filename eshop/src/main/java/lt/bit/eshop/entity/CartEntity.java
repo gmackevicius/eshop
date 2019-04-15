@@ -12,11 +12,11 @@ public class CartEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "cart_cart_items", joinColumns = {@JoinColumn(name = "cart_id")}, inverseJoinColumns = {@JoinColumn(name = "cart_item_id")} )
     private Set<CartItem> cartItems;
 
-//    private int cartQuantity;
+
 
     public Long getId() {
         return id;
