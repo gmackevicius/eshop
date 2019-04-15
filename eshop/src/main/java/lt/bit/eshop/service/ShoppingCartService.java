@@ -68,4 +68,19 @@ public class ShoppingCartService {
         UserEntity user = userService.getCurrentUser();
         return user.getCart();
     }
+
+    public void deleteCartItem(Long id) {
+        UserEntity user = userService.getCurrentUser();
+        Set<CartItem> tempCart = null;
+        for(CartItem item : user.getCart().getCartItems()) {
+            if(item.getId() == id ) {
+               tempCart = user.getCart().getCartItems();
+               tempCart.remove(item);
+               break;
+            }
+        }
+        user.getCart().setCartItems(tempCart);
+        userService.saveUser(user);
+        cartItemRepository.deleteById(id);
+    }
 }

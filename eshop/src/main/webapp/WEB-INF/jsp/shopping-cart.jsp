@@ -30,12 +30,12 @@
                             <td>${cartItem.getProduct().getName()}</td>
                             <td>${cartItem.getProduct().getPrice()}</td>
                             <td>
-                                <form:form method="POST"  modelAttribute="cartItem">
+                                <form:form method="POST" modelAttribute="cartItem">
                                 <form:input path="quantity" value="${cartItem.getQuantity()}"/>
                                 </form:form>
                             </td>
                             <td><div class="form-check">
-                                <form:form method="POST"  modelAttribute="shoppingCart">
+                                <form:form method="POST" action="/shopping-cart/remove" modelAttribute="cartItem">
                                 <form:button name="id" class="btn btn-danger" value="${cartItem.getId()}">Remove</form:button>
                                 </form:form>
                             </div></td>

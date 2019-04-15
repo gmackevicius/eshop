@@ -47,4 +47,11 @@ public class CartController {
         return "redirect:/category-list/id-DESC";
     }
 
+    @RequestMapping(value="/shopping-cart/remove", method = RequestMethod.POST)
+    public String removeFromCart(@RequestParam Long id) {
+        cartService.deleteCartItem(id);
+
+        return "redirect:/shopping-cart";
+    }
+
 }
