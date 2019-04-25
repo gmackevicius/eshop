@@ -2,6 +2,7 @@
 //
 //
 //
+//import lt.bit.eshop.config.OrderStatus;
 //import lt.bit.eshop.entity.Order;
 //
 //import java.util.Set;
@@ -16,7 +17,7 @@
 //
 //    private double sum;
 //
-//    private String status;
+//    private OrderStatus status;
 //
 //
 //
@@ -24,7 +25,7 @@
 //        this.id = order.getId();
 //        this.date = order.getDate();
 //        this.sum = order.getSum();
-////        this.status = order.
+//        this.status = order.getStatus();
 //    }
 //
 //    public OrderModel() {

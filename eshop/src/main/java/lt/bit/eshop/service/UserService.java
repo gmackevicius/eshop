@@ -1,10 +1,7 @@
 package lt.bit.eshop.service;
 
 import lt.bit.eshop.config.CustomUserDetails;
-import lt.bit.eshop.entity.CartEntity;
-import lt.bit.eshop.entity.CartItem;
-import lt.bit.eshop.entity.RoleEntity;
-import lt.bit.eshop.entity.UserEntity;
+import lt.bit.eshop.entity.*;
 import lt.bit.eshop.form.UserModel;
 import lt.bit.eshop.repository.CartRepository;
 import lt.bit.eshop.repository.RoleRepository;
@@ -17,10 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,6 +54,8 @@ public class UserService {
         Set<CartItem> emptyCart = new HashSet<>();
         cart.setCartItems(emptyCart);
         newUser.setCart(cart);
+        List<Order> emptyOrderList = new ArrayList<>();
+        newUser.setOrders(emptyOrderList);
 
         newUser.setPassword(encoder.encode(newUser.getPassword()));
 

@@ -20,7 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByNameContaining(String name);
 
-//    @Query("SELECT p FROM product p WHERE p.category = ?1 ")
+//    @Query("SELECT p FROM product p WHERE p.category = ?1 ", nativeQuery = true)
 //    List<Product> filterProducts(CategoryEntity entity);
 
 }

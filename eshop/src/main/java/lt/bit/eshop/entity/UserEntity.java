@@ -4,6 +4,7 @@ package lt.bit.eshop.entity;
 import lt.bit.eshop.form.UserModel;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,6 +29,12 @@ public class UserEntity {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private CartEntity cart;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_orders", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "order_id")})
+    private List<Order> orders;
+
+
 
 
     public UserEntity(UserModel userModel) {
@@ -93,5 +100,13 @@ public class UserEntity {
 
     public void setCart(CartEntity cart) {
         this.cart = cart;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

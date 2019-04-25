@@ -43,31 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin();
     }
 
-//    @Bean
-//    @Override
-//    protected UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                .username("user")
-//                .password("secret")
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails admin =
-//                User.withDefaultPasswordEncoder()
-//                        .username("admin")
-//                        .password("admin")
-//                        .roles("ADMIN", "USER")
-//                        .build();
-//
-//        UserDetailsService userDetailsService = new InMemoryUserDetailsManager();
-//         ((InMemoryUserDetailsManager) userDetailsService).createUser(user);
-//         ((InMemoryUserDetailsManager) userDetailsService).createUser(admin);
-//
-//
-//        return userDetailsService;
-//    }
-
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         final DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

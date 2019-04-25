@@ -52,6 +52,11 @@
         <div class="col-1">
             <span>Total: ${shoppingCart.getSum()}</span>
         </div>
+        <div class="col-1">
+            <form:form method="POST" action="/shopping-cart/order" modelAttribute="shoppingCart">
+                <form:button name="id" class="btn btn-danger">Check out</form:button>
+            </form:form>
+        </div>
     </div>
 
 </div>

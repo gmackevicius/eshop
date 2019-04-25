@@ -1,6 +1,7 @@
 package lt.bit.eshop.entity;
 
 
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -34,14 +35,12 @@ public class CartEntity {
         this.cartItems = cartItems;
     }
 
-//    public int getCartQuantity() {
-//        for(CartItem c : cartItems) {
-//            cartQuantity += c.getQuantity();
-//        }
-//        return cartQuantity;
-//    }
-//
-//    public void setCartQuantity(int cartQuantity) {
-//        this.cartQuantity = cartQuantity;
-//    }
+    public double getSum() {
+        double sum = 0;
+        for(CartItem c : this.cartItems){
+            sum += (c.getQuantity() * c.getProduct().getPrice());
+        }
+
+        return sum;
+    }
 }

@@ -40,7 +40,7 @@ public class CartController {
 
 
     @RequestMapping(value="/category-list/buy",  method = RequestMethod.POST)
-    public String buy(@RequestParam Long id){
+    public String addToCart(@RequestParam Long id){
 
         cartService.buy(id);
 
@@ -52,6 +52,14 @@ public class CartController {
         cartService.deleteCartItem(id);
 
         return "redirect:/shopping-cart";
+    }
+
+    @RequestMapping(value = "/shopping-cart/order", method = RequestMethod.POST)
+    public String order() {
+
+        cartService.order();
+
+        return "redirect:/category-list/id-DESC";
     }
 
 }

@@ -1,6 +1,9 @@
 package lt.bit.eshop.entity;
 
 
+import lt.bit.eshop.form.CartItemModel;
+import lt.bit.eshop.form.CartModel;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +23,12 @@ public class CartItem {
         this.product = product;
         this.quantity = quantity;
     }
+
+//    public CartItem(CartItemModel model) {
+//        this.id = model.getId();
+//        this.quantity = model.getQuantity();
+//        this.product = new Product(model.getProduct());
+//    }
 
     public CartItem() {
     }
