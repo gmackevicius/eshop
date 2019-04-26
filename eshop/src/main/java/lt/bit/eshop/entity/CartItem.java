@@ -14,7 +14,7 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Product product;
 
     private int quantity;
@@ -23,12 +23,7 @@ public class CartItem {
         this.product = product;
         this.quantity = quantity;
     }
-
-//    public CartItem(CartItemModel model) {
-//        this.id = model.getId();
-//        this.quantity = model.getQuantity();
-//        this.product = new Product(model.getProduct());
-//    }
+    
 
     public CartItem() {
     }

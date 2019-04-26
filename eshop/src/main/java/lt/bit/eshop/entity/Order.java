@@ -28,16 +28,14 @@ public class Order {
 
     private double sum;
 
-    private String status;
+    private OrderStatus status;
 
     public Order(CartEntity cart) {
         Date date = new Date();
         String dateToSet = date.toString();
-//        Set<CartItem> cartItems = cart.getCartItems();
         this.date = dateToSet;
-//        this.items = cartItems;
         this.sum = cart.getSum();
-        this.status = OrderStatus.PENDING.name();
+        this.status = OrderStatus.PENDING;
     }
 
     public Order() {
@@ -59,11 +57,11 @@ public class Order {
         this.date = date;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 

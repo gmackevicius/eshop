@@ -1,24 +1,23 @@
 package lt.bit.eshop.service;
 
 
-import lt.bit.eshop.entity.CartEntity;
-import lt.bit.eshop.entity.CartItem;
-import lt.bit.eshop.entity.Order;
-import lt.bit.eshop.entity.UserEntity;
+import lt.bit.eshop.entity.*;
 import lt.bit.eshop.form.CartItemModel;
 import lt.bit.eshop.form.CartModel;
+import lt.bit.eshop.form.OrderModel;
 import lt.bit.eshop.form.ProductModel;
 import lt.bit.eshop.repository.CartItemRepository;
 import lt.bit.eshop.repository.CartRepository;
+import lt.bit.eshop.repository.OrderRepository;
 import lt.bit.eshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static lt.bit.eshop.config.OrderStatus.COMPLETED;
+import static lt.bit.eshop.config.OrderStatus.DELIVERY;
 
 @Service
 public class ShoppingCartService {
@@ -31,6 +30,8 @@ public class ShoppingCartService {
     private ProductService productService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderRepository orderRepository;
     private boolean quantityUpdated;
 
     public void buy(Long id) {
@@ -105,5 +106,34 @@ public class ShoppingCartService {
 
         user.getCart().getCartItems().removeAll(user.getCart().getCartItems());
         userService.saveUser(user);
+
+//        return new OrderModel(order);
+    }
+
+    public void orderStatusAndQuantityChange(Long id) {
+        Optional<Order> orderOptional = orderRepository.findById(id);
+
+        if(orderOptional.isPresent()) {
+           Order orderEntity = orderOptional.get();
+           if(orderEntity.getStatus().toString().toLowerCase().equals("pending")){
+               orderEntity.setStatus(DELIVERY);
+
+               for(CartItem c : orderEntity.getItems()) {
+                   if(c.getProduct().getQuantity() > c.getQuantity()){
+                       c.getProduct().setQuantity(c.getProduct().getQuantity() - c.getQuantity());
+                   }
+               }
+
+               orderRepository.save(orderEntity);
+           }
+           else if(orderEntity.getStatus().toString().toLowerCase().equals("delivery")) {
+               orderEntity.setStatus(COMPLETED);
+               orderRepository.save(orderEntity);
+           }
+        }
+    }
+
+    public OrderModel getLatestOrder() {
+        return new OrderModel(userService.getCurrentUser().getOrders().get(userService.getCurrentUser().getOrders().size() - 1));
     }
 }
