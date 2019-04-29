@@ -51,7 +51,7 @@ public class AdminController {
     }
 
     @RequestMapping( value = "/create/products", method = RequestMethod.POST)
-    public String createProduct(@Valid @ModelAttribute ProductModel productModel, BindingResult bindingResult, Model model, MultipartFile file) throws FileFormatException, StorageException, ProductNotFound {
+    public String createProduct(@Valid @ModelAttribute ProductModel productModel, BindingResult bindingResult, Model model,@RequestParam("productImage") MultipartFile file) throws FileFormatException, StorageException, ProductNotFound {
 
 
         if(!bindingResult.hasErrors()) {
@@ -76,15 +76,19 @@ public class AdminController {
         ProductModel pm = new ProductModel(productService.getById(id));
         model.addAttribute("productModel", pm );
 
+
         return "product-form";
     }
 
     @RequestMapping(value = "create/products/{id}", method = RequestMethod.POST )
-    public String editProduct(@PathVariable Long id, Model model, ProductModel productModel) {
+    public String editProduct(@PathVariable Long id, Model model, ProductModel productModel, @RequestParam("productImage") MultipartFile file) throws FileFormatException, StorageException, ProductNotFound {
 
         productService.editProduct(productModel, id);
 
         model.addAttribute("productList", productService.getProducts("id-DESC"));
+        String imageName = storageService.store(file, productService.constructImageName(id));
+
+        productService.attachImage(id, imageName);
 
         return "redirect:/admin/product-list";
     }

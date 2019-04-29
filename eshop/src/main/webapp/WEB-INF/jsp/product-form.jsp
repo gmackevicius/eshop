@@ -10,7 +10,7 @@
     <h1>Product form</h1>
 <div class="container">
     <div class="row">
-        <form:form method="POST"  modelAttribute="productModel">
+        <form:form method="POST"  modelAttribute="productModel" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Product name</label>
                 <form:input path="name" cssClass="form-control" />

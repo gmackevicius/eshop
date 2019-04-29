@@ -36,30 +36,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/ShoppingCartService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="123" column="20" selection-start-line="123" selection-start-column="20" selection-end-line="123" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order-landing.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="45" column="66" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/CartController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
+            <state relative-caret-position="600">
               <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -69,22 +48,73 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/entity/Product.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/ProductService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="113">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/category-list.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/entity/CartItem.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/ProductsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-264">
+              <caret line="33" column="79" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/AdminController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product-form.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-255">
+              <caret line="12" column="94" lean-forward="true" selection-start-line="12" selection-start-column="94" selection-end-line="12" selection-end-column="94" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/FileStorageService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/config/AdditionalResourceWebConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="11" column="5" lean-forward="true" selection-start-line="10" selection-start-column="57" selection-end-line="11" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/config/StorageProperties.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -134,7 +164,6 @@
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/config/StorageProperties.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/validation/exceptions/FileFormatException.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/validation/exceptions/StorageException.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product-form.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/FileStorageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/config/CustomUserDetails.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/validation/exceptions/ProductNotFound.java" />
@@ -149,11 +178,8 @@
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/form/UserModel.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/validation/ExistUsernameValidator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/ProductService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/ProductsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/form/CartModel.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/category-list.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/form/CartItemModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/WebServiceController.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/config/SecurityConfig.java" />
@@ -171,6 +197,10 @@
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/CartController.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/ShoppingCartService.java" />
         <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/entity/CartItem.java" />
+        <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/ProductService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product-form.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/category-list.jsp" />
       </list>
     </option>
   </component>
@@ -284,6 +314,13 @@
               <item name="eshop" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eshop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eshop" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -318,7 +355,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556283335490" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556522103891" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../demo" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -428,7 +465,7 @@
       <workItem from="1556113187397" duration="3453000" />
       <workItem from="1556172766079" duration="7058000" />
       <workItem from="1556273405696" duration="9690000" />
-      <workItem from="1556519527499" duration="211000" />
+      <workItem from="1556519527499" duration="2283000" />
     </task>
     <servers />
   </component>
@@ -444,7 +481,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311795000" />
+    <option name="totallyTimeSpent" value="313867000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -459,7 +496,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26626325" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -545,6 +582,12 @@
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/AdminController.java</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -554,32 +597,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/5.1.5.RELEASE/407c8f57c15605a13c76a869357181825a7a5db1/spring-core-5.1.5.RELEASE-sources.jar!/org/springframework/util/ReflectionUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="423" selection-start-line="423" selection-end-line="423" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.1.5.RELEASE/992ff1c4ce798a61c8d060c3edc7b08742fa36a/spring-aop-5.1.5.RELEASE-sources.jar!/org/springframework/aop/support/AopUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="157" selection-start-line="157" selection-end-line="157" />
-          <folding>
-            <element signature="e#5994#5995#0" expanded="true" />
-            <element signature="e#6046#6047#0" expanded="true" />
-            <element signature="e#6276#6277#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.1.5.RELEASE/992ff1c4ce798a61c8d060c3edc7b08742fa36a/spring-aop-5.1.5.RELEASE-sources.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="228" selection-start-line="228" selection-end-line="228" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.1.5.RELEASE/48ad8a299212cef3d4601b2154c9ea5c64a27f85/spring-security-core-5.1.5.RELEASE-sources.jar!/org/springframework/security/authentication/AbstractAuthenticationToken.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -696,9 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -796,13 +810,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/ProductService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1878">
-          <caret line="183" selection-start-line="183" selection-end-line="183" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/config/OrderStatus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -837,13 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="57" column="24" lean-forward="true" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/category-list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1615">
-          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -897,30 +897,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/ProductsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret line="33" column="79" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.1.5.RELEASE/b2338b40c93e2f46df679a1a5a1ddca913dd111f/spring-webmvc-5.1.5.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
           <caret line="902" selection-start-line="902" selection-end-line="902" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-289">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product-form.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357" />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.5.RELEASE/46673f1424ad8dc3a9fc39a96730e1ee2663fc18/spring-web-5.1.5.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
@@ -939,13 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="45" column="66" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/entity/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -969,13 +943,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/config/StorageProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/config/AdditionalResourceWebConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="10" selection-start-column="57" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/ProductsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-264">
+          <caret line="33" column="79" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/CartController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
+        <state relative-caret-position="600">
           <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/FileStorageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product-form.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="12" column="94" lean-forward="true" selection-start-line="12" selection-start-column="94" selection-end-line="12" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/service/ProductService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lt/bit/eshop/entity/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/category-list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
         </state>
       </provider>
     </entry>

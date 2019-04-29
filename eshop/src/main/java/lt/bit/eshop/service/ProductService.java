@@ -114,6 +114,7 @@ public class ProductService {
         CategoryEntity categoryEntity = categoryEnt.get();
         productEntity.setCategory(categoryEntity);
 
+
         productRepository.save(productEntity);
     }
 
